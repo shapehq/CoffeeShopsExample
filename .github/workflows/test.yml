@@ -38,11 +38,11 @@ jobs:
           xcodebuild build-for-testing\
             -scheme CoffeeShops\
             -sdk iphonesimulator\
-            -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.4'\
+            -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=17.0'\
             -allowProvisioningUpdates
       - name: Test
         run: |
           xcodebuild test-without-building\
             -scheme CoffeeShops\
             -sdk iphonesimulator\
-            -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.4'
+            -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=17.0'
