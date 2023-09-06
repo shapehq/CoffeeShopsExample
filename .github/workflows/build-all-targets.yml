@@ -6,17 +6,17 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.0.app/Contents/Developer
 jobs:
   get_targets:
     name: Get Targets
-    runs-on: macos-latest
+    runs-on: macos-13
     outputs:
       targets: ${{ steps.get_targets.outputs.targets }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          submodules: recursive
       - name: Install xcodegen
         run: brew install xcodegen
       - name: Generate .xcodeproj
