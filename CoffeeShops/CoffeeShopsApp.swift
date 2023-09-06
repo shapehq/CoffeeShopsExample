@@ -65,7 +65,7 @@ private extension CoffeeShopsApp {
     private var profileView: some View {
         ProfileView(
             authenticator: authenticator,
-            visitedCoffeeShopsRepository: DBVisitedCoffeShopsRepository(
+            visitedCoffeeShopsRepository: DBVisitedCoffeeShopsRepository(
                 dbPOIRepository: dbPOIRepository
             ),
             mapsLauncher: mapsLauncher

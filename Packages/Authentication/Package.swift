@@ -18,6 +18,10 @@ let package = Package(
         .target(name: "AuthenticationData", dependencies: [
             "AuthenticationDomain"
         ]),
-        .target(name: "AuthenticationDomain")
+        .target(name: "AuthenticationDomain"),
+        .testTarget(name: "AuthenticationDataTests", dependencies: [
+            "AuthenticationData",
+            "AuthenticationDomain"
+        ])
     ]
 )

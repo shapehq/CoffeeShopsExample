@@ -1,0 +1,59 @@
+{
+  "configurations" : [
+    {
+      "id" : "37AE76B1-DF9E-4FF8-BFBC-8F69C14E9D33",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/Authentication",
+        "identifier" : "AuthenticationDataTests",
+        "name" : "AuthenticationDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/DB",
+        "identifier" : "SwiftDataDBTests",
+        "name" : "SwiftDataDBTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/AnyAsync",
+        "identifier" : "AnyAsyncTests",
+        "name" : "AnyAsyncTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/DetailsFeature",
+        "identifier" : "DetailsFeatureDataTests",
+        "name" : "DetailsFeatureDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "MapFeatureDataTests",
+        "name" : "MapFeatureDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:..\/ProfileFeature",
+        "identifier" : "ProfileFeatureDataTests",
+        "name" : "ProfileFeatureDataTests"
+      }
+    }
+  ],
+  "version" : 1
+}

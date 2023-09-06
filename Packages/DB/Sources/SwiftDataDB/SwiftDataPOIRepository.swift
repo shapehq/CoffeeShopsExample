@@ -14,7 +14,7 @@ public final class SwiftDataPOIRepository: DBPOIRepository {
         self.modelContext = modelContext
     }
 
-    public func pointsOfInterest(withID id: DBPOIID) throws -> SwiftDataPOI? {
+    public func pointOfInterest(withID id: DBPOIID) throws -> SwiftDataPOI? {
         let fetchDescriptor = FetchDescriptor<SwiftDataPOI>(
             predicate: #Predicate { $0.id.rawValue == id.rawValue }
         )

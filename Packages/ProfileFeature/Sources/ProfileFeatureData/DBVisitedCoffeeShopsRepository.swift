@@ -4,7 +4,7 @@ import Observation
 import ProfileFeatureDomain
 
 @Observable
-public final class DBVisitedCoffeShopsRepository<DBPOIRepositoryType: DBPOIRepository>: VisitedCoffeeShopsRepository {
+public final class DBVisitedCoffeeShopsRepository<DBPOIRepositoryType: DBPOIRepository>: VisitedCoffeeShopsRepository {
     public var visitedCoffeeShops: [DBVisitedCoffeeShop<DBPOIRepositoryType.DBPOIType>] {
         if fetchTask == nil {
             fetchCoffeeShops()
@@ -26,7 +26,7 @@ public final class DBVisitedCoffeShopsRepository<DBPOIRepositoryType: DBPOIRepos
     }
 }
 
-private extension DBVisitedCoffeShopsRepository {
+private extension DBVisitedCoffeeShopsRepository {
     private func fetchCoffeeShops() {
         fetchTask?.cancel()
         fetchTask = Task {

@@ -10,6 +10,13 @@ public final class AnyAsyncIterator<AnyElement>: AsyncIteratorProtocol {
         }
     }
 
+    public init<SequenceType: Sequence>(_ sequence: SequenceType) where SequenceType.Element == AnyElement {
+        var it = sequence.makeIterator()
+        _next = {
+            it.next()
+        }
+    }
+
     public func next() async throws -> Element? {
         try await _next()
     }

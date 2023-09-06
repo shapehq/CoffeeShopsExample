@@ -12,6 +12,9 @@ let package = Package(
         ])
     ],
     targets: [
-        .target(name: "AnyAsync")
+        .target(name: "AnyAsync"),
+        .testTarget(name: "AnyAsyncTests", dependencies: [
+            "AnyAsync"
+        ])
     ]
 )

@@ -4,7 +4,7 @@ import Foundation
 public protocol DBPOIRepository {
     associatedtype DBPOIType: DBPOI
     var pointsOfInterest: AnyAsyncSequence<[DBPOIType]> { get }
-    func pointsOfInterest(withID id: DBPOIID) throws -> DBPOIType?
+    func pointOfInterest(withID id: DBPOIID) throws -> DBPOIType?
     func pointsOfInterest(withIDs ids: Set<DBPOIID>) throws -> AnyAsyncSequence<[DBPOIID: DBPOIType]>
     func addPointOfInterest(
         title: String,

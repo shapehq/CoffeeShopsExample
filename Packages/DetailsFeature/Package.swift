@@ -30,6 +30,11 @@ let package = Package(
         .target(name: "DetailsFeatureUI", dependencies: [
             "DetailsFeatureDomain",
             .product(name: "MapsLauncherDomain", package: "MapsLauncher")
+        ]),
+        .testTarget(name: "DetailsFeatureDataTests", dependencies: [
+            "DB",
+            "DetailsFeatureData",
+            "DetailsFeatureDomain"
         ])
     ]
 )

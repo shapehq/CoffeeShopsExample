@@ -28,6 +28,11 @@ let package = Package(
         .target(name: "MapFeatureDomain"),
         .target(name: "MapFeatureUI", dependencies: [
             "MapFeatureDomain"
+        ]),
+        .testTarget(name: "MapFeatureDataTests", dependencies: [
+            "DB",
+            "MapFeatureData",
+            "MapFeatureDomain"
         ])
     ]
 )

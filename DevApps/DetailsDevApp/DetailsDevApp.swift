@@ -1,5 +1,6 @@
 import DetailsFeatureDomain
 import DetailsFeatureUI
+import MapsLauncherData
 import SwiftUI
 
 @main
@@ -15,7 +16,8 @@ struct DetailsDevApp: App {
                     websiteURL: URL(string: "https://prufrockcoffee.com")
                 ),
                 detailsService: MockDetailsService(),
-                lookAroundSceneLoader: NullObjectLookAroundSceneLoader()
+                lookAroundSceneLoader: NullObjectLookAroundSceneLoader(),
+                mapsLauncher: MapKitMapsLauncher()
             )
         }
     }

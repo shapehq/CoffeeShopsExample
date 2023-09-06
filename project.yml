@@ -37,6 +37,9 @@ targets:
       product: DetailsFeatureDomain
     - package: DetailsFeature
       product: DetailsFeatureUI
+    scheme:
+      testPlans:
+      - path: CoffeeShops/TestPlan.xctestplan
   OnboardingDevApp:
     type: application
     platform: iOS
@@ -65,6 +68,8 @@ targets:
         product: DetailsFeatureDomain
       - package: DetailsFeature
         product: DetailsFeatureUI
+      - package: MapsLauncher
+        product: MapsLauncherData
   MapDevApp:
     type: application
     platform: iOS

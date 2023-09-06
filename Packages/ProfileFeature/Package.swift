@@ -39,6 +39,11 @@ let package = Package(
             "ProfileFeatureDomain"
         ], resources: [
             .process("Assets.xcassets")
+        ]),
+        .testTarget(name: "ProfileFeatureDataTests", dependencies: [
+            "AnyAsync",
+            "DB",
+            "ProfileFeatureData"
         ])
     ]
 )

@@ -9,6 +9,12 @@ public final class AnyAsyncSequence<AnyElement>: AsyncSequence {
         }
     }
 
+    public init<SequenceType: Sequence>(_ sequence: SequenceType) where SequenceType.Element == AnyElement {
+        iteratorFactory = {
+            AnyAsyncIterator(sequence)
+        }
+    }
+
     public func makeAsyncIterator() -> AnyAsyncIterator<AnyElement> {
         iteratorFactory()
     }

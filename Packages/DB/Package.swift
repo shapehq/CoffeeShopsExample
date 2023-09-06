@@ -24,6 +24,9 @@ let package = Package(
         .target(name: "SwiftDataDB", dependencies: [
             "AnyAsync",
             "DB"
+        ]),
+        .testTarget(name: "SwiftDataDBTests", dependencies: [
+            "SwiftDataDB"
         ])
     ]
 )
