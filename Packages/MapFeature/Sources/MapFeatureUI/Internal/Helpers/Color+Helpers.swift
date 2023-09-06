@@ -1,5 +1,5 @@
-import SwiftUI
 import MapFeatureDomain
+import SwiftUI
 
 extension Color {
     init(_ rating: MapPOI.Color) {

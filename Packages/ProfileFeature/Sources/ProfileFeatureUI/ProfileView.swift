@@ -1,6 +1,6 @@
 import AuthenticationDomain
-import ProfileFeatureDomain
 import MapsLauncherDomain
+import ProfileFeatureDomain
 import SwiftUI
 
 public struct ProfileView<VisitedCoffeeShopsRepositoryType: VisitedCoffeeShopsRepository>: View {
@@ -9,9 +9,9 @@ public struct ProfileView<VisitedCoffeeShopsRepositoryType: VisitedCoffeeShopsRe
     private let mapsLauncher: MapsLaunching
     @State private var isConfirmLogOutPresented = false
     private var visitedCoffeeShopsDetail: String? {
-        let count = visitedCoffeeShopsRepository.visitedCoffeeShops.count
-        if count > 0 {
-            return "\(count)"
+        let visitedCoffeeShops = visitedCoffeeShopsRepository.visitedCoffeeShops
+        if !visitedCoffeeShops.isEmpty {
+            return "\(visitedCoffeeShops.count)"
         } else {
             return nil
         }

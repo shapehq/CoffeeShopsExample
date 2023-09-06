@@ -1,5 +1,5 @@
-import MapKit
 import DetailsFeatureDomain
+import MapKit
 
 struct NullObjectLookAroundSceneLoader: LookAroundSceneLoading {
     func lookAroundScene(

@@ -1,6 +1,6 @@
+import DetailsFeatureDomain
 import MapKit
 import MapsLauncherDomain
-import DetailsFeatureDomain
 import SwiftUI
 
 public struct DetailsView<DetailsServiceType: DetailsService>: View {
@@ -43,7 +43,7 @@ public struct DetailsView<DetailsServiceType: DetailsService>: View {
                 }
             }
         }
-        .onChange(of: sparseDetails) { _, newValue in
+        .onChange(of: sparseDetails) { _, _ in
             Task {
                 await loadDetails()
             }

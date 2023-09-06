@@ -1,22 +1,22 @@
 import DB
-import Foundation
 import DetailsFeatureDomain
+import Foundation
 
 @Observable
 final class DBWrappingDetails<DBPOIRepositoryType: DBPOIRepository>: Details {
-    public let title: String
-    public let latitude: Double
-    public let longitude: Double
-    public let phoneNumber: String?
-    public let websiteURL: URL?
-    public var rating: DetailsRating {
+    let title: String
+    let latitude: Double
+    let longitude: Double
+    let phoneNumber: String?
+    let websiteURL: URL?
+    var rating: DetailsRating {
         didSet {
             if rating != oldValue {
                 dbPOI.rating = DBRating(rating)
             }
         }
     }
-    public var note: String? {
+    var note: String? {
         didSet {
             if note != oldValue {
                 dbPOI.note = note
@@ -25,10 +25,10 @@ final class DBWrappingDetails<DBPOIRepositoryType: DBPOIRepository>: Details {
     }
 
     private let dbPOIRepository: DBPOIRepositoryType
-    private var _dbPOI: DBPOI?
+    private var cachedDBPOI: DBPOI?
     private var dbPOI: DBPOI {
-        if let _dbPOI {
-            return _dbPOI
+        if let cachedDBPOI {
+            return cachedDBPOI
         } else {
             let dbPOI = dbPOIRepository.addPointOfInterest(
                 title: title,
@@ -37,7 +37,7 @@ final class DBWrappingDetails<DBPOIRepositoryType: DBPOIRepository>: Details {
                 phoneNumber: phoneNumber,
                 websiteURL: websiteURL
             )
-            _dbPOI = dbPOI
+            cachedDBPOI = dbPOI
             return dbPOI
         }
     }
@@ -48,7 +48,7 @@ final class DBWrappingDetails<DBPOIRepositoryType: DBPOIRepository>: Details {
         dbPOIRepository: DBPOIRepositoryType
     ) {
         self.init(sparseDetails, dbPOIRepository: dbPOIRepository)
-        _dbPOI = dbPOI
+        cachedDBPOI = dbPOI
         rating = DetailsRating(dbPOI.rating)
         note = dbPOI.note
     }

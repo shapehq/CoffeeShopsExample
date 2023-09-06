@@ -23,8 +23,8 @@ public final class MapKitMapPOIService: MapPOIService {
                     return
                 }
                 let mapItems = try await self.search(for: "coffee", in: region)
-                let MapPOIs = mapItems.compactMap(MapPOI.init)
-                continuation.yield(MapPOIs)
+                let mapPOIs = mapItems.compactMap(MapPOI.init)
+                continuation.yield(mapPOIs)
                 continuation.finish()
             }
             continuation.onTermination = { _ in

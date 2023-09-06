@@ -1,6 +1,7 @@
 import MapFeatureDomain
 
 struct MockMapPOIService: MapPOIService {
+    // swiftlint:disable:next function_body_length
     func pointsOfInterest(
         centerLatitude: Double,
         centerLongitude: Double,

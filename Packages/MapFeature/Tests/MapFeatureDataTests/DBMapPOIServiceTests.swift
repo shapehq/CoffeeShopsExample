@@ -11,7 +11,7 @@ final class DBMapPOIServiceTests: XCTestCase {
         let dbPOIRepository = MockDBPOIRepository(content: [
             MockDBPOI(
                 id: DBPOIID(latitude: 56, longitude: 10),
-                title: "Foo", 
+                title: "Foo",
                 latitude: 56,
                 longitude: 10,
                 rating: .four

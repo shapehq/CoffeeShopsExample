@@ -27,5 +27,5 @@ struct HeaderView: View {
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    HeaderView(title: "Prufrock Coffee", openInMaps: {})
+    HeaderView(title: "Prufrock Coffee") {}
 }

@@ -31,7 +31,7 @@ final class MockDBPOIRepository: DBPOIRepository {
     ) -> MockDBPOI {
         let insertedPOI = MockDBPOI(
             id: DBPOIID(
-                latitude: latitude, 
+                latitude: latitude,
                 longitude: longitude
             ),
             title: title,

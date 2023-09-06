@@ -36,7 +36,7 @@ public final class SwiftDataPOIRepository: DBPOIRepository {
     }
 
     public func addPointOfInterest(
-        title: String, 
+        title: String,
         latitude: Double,
         longitude: Double,
         phoneNumber: String?,

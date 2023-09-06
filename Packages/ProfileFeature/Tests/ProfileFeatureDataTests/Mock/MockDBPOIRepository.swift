@@ -28,7 +28,7 @@ final class MockDBPOIRepository: DBPOIRepository {
     ) -> MockDBPOI {
         MockDBPOI(
             id: DBPOIID(
-                latitude: latitude, 
+                latitude: latitude,
                 longitude: longitude
             ),
             title: title,

@@ -10,7 +10,7 @@ final class SwiftDataPOIRepositoryTests: XCTestCase {
         let insertedPOI = repository.addPointOfInterest(
             title: "Foo",
             latitude: 56,
-            longitude: 10, 
+            longitude: 10,
             phoneNumber: "12345678",
             websiteURL: URL(string: "https://example.com")
         )

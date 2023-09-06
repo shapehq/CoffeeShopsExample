@@ -8,7 +8,7 @@ public enum VisitedCoffeeShopRating: Int, Comparable {
     case four = 4
     case five = 5
 
-    public static func < (lhs: VisitedCoffeeShopRating, rhs: VisitedCoffeeShopRating) -> Bool {
+    public static func < (lhs: Self, rhs: Self) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
 }

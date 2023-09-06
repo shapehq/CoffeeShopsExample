@@ -6,13 +6,13 @@ final class SwiftDataAsyncModelIterator<ModelType: PersistentModel>: AsyncIterat
 
     private let streamFactory: SwiftDataAsyncModelStreamFactory<ModelType>
     private var iterator: AsyncThrowingStream<[ModelType], Error>.Iterator?
-    private var _stream: AsyncThrowingStream<[ModelType], Error>?
+    private var cachedStream: AsyncThrowingStream<[ModelType], Error>?
     private var stream: AsyncThrowingStream<[ModelType], Error> {
-        if let _stream {
-            return _stream
+        if let cachedStream {
+            return cachedStream
         } else {
             let stream = streamFactory.stream
-            _stream = stream
+            cachedStream = stream
             return stream
         }
     }

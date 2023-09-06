@@ -2,7 +2,7 @@ import AnyAsync
 import ProfileFeatureDomain
 
 final class PreviewVisitedCoffeeShopsRepository: VisitedCoffeeShopsRepository {
-    private(set) var visitedCoffeeShops: [PreviewVisitedCoffeeShop] =     [
+    private(set) var visitedCoffeeShops: [PreviewVisitedCoffeeShop] = [
         PreviewVisitedCoffeeShop(
             title: "Prufrock Coffee",
             latitude: 51.52004066260156,

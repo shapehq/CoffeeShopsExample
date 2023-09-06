@@ -10,7 +10,7 @@ final class DBVisitedCoffeeShopsRepositoryTests: XCTestCase {
             latitude: 56,
             longitude: 10
         )
-        let dbPOIRepository = MockDBPOIRepository(content: [[mockDBPPOI]])
+        let dbPOIRepository = MockDBPOIRepository(content: [mockDBPPOI])
         let repository = DBVisitedCoffeeShopsRepository(dbPOIRepository: dbPOIRepository)
         let expectation = XCTestExpectation(description: "timeout")
         let task = Task {
@@ -39,7 +39,7 @@ final class DBVisitedCoffeeShopsRepositoryTests: XCTestCase {
             latitude: 56,
             longitude: 10
         )
-        let dbPOIRepository = MockDBPOIRepository(content: [[mockDBPPOI]])
+        let dbPOIRepository = MockDBPOIRepository(content: [mockDBPPOI])
         let repository = DBVisitedCoffeeShopsRepository(dbPOIRepository: dbPOIRepository)
         let expectation = XCTestExpectation(description: "timeout")
         let task = Task {
@@ -49,7 +49,7 @@ final class DBVisitedCoffeeShopsRepositoryTests: XCTestCase {
                 repository.deleteVisitedCoffeeShop(visitedCoffeeShop)
                 XCTAssertEqual(dbPOIRepository.deletedPOIID, idToDelete)
                 expectation.fulfill()
-            }  else {
+            } else {
                 XCTFail("visitedCoffeeShops is empty")
                 expectation.fulfill()
             }
@@ -58,4 +58,3 @@ final class DBVisitedCoffeeShopsRepositoryTests: XCTestCase {
         task.cancel()
     }
 }
-

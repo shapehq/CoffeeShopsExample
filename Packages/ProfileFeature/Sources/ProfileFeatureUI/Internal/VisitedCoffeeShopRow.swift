@@ -47,7 +47,6 @@ struct VisitedCoffeeShopRow: View {
             rating: .five,
             note: "Excellent coffee. Common place to work from."
         ),
-        mapsLauncher: PreviewMapsLauncher(),
-        onDelete: {}
-    )
+        mapsLauncher: PreviewMapsLauncher()
+    ) { }
 }

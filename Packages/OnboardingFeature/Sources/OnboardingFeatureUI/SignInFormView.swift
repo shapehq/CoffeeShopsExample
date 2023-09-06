@@ -71,13 +71,13 @@ struct SignInFormView: View {
 }
 
 #Preview("Continue", traits: .sizeThatFitsLayout) {
-    SignInFormView(showActivityIndicator: false, onSignIn: { _, _ in })
+    SignInFormView(showActivityIndicator: false) { _, _ in }
         .padding()
         .background(.black)
 }
 
 #Preview("Activity Indicator", traits: .sizeThatFitsLayout) {
-    SignInFormView(showActivityIndicator: true, onSignIn: { _, _ in })
+    SignInFormView(showActivityIndicator: true) { _, _ in }
         .padding()
         .background(.black)
 }

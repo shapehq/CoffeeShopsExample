@@ -1,5 +1,5 @@
-import Foundation
 import DetailsFeatureDomain
+import Foundation
 
 @Observable
 final class MockDetails: Details {

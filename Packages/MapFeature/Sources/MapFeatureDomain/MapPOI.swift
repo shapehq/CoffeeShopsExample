@@ -1,6 +1,7 @@
 import Foundation
 
 public struct MapPOI: Identifiable, Hashable {
+    // swiftlint:disable:next type_name
     public struct ID: Hashable {
         public var rawValue: String
 

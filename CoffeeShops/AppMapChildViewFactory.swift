@@ -1,8 +1,8 @@
-import MapsLauncherDomain
-import MapFeatureDomain
-import MapFeatureUI
 import DetailsFeatureDomain
 import DetailsFeatureUI
+import MapFeatureDomain
+import MapFeatureUI
+import MapsLauncherDomain
 import SwiftUI
 
 struct AppMapChildViewFactory<DetailsServiceType: DetailsService>: MapChildViewFactory {

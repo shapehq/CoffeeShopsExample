@@ -21,8 +21,8 @@ final class MockDBPOIRepository: DBPOIRepository {
                 pois.filter { poi in
                     ids.contains(poi.id)
                 }
-            }.map {
-                Dictionary(grouping: $0, by: \.id).compactMapValues(\.first)
+            }.map { pois in
+                Dictionary(grouping: pois, by: \.id).compactMapValues(\.first)
             }
         )
     }

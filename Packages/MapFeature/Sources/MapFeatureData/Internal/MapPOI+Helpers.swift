@@ -1,5 +1,5 @@
-import MapKit
 import MapFeatureDomain
+import MapKit
 
 extension MapPOI {
     init?(_ mapItem: MKMapItem) {
@@ -7,7 +7,7 @@ extension MapPOI {
             return nil
         }
         self.init(
-            title: name, 
+            title: name,
             latitude: mapItem.placemark.coordinate.latitude,
             longitude: mapItem.placemark.coordinate.longitude,
             phoneNumber: mapItem.phoneNumber,
