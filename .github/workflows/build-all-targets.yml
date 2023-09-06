@@ -1,4 +1,4 @@
-name: Build All Targets
+name: Build
 on:
   workflow_dispatch: {}
   pull_request:
@@ -7,20 +7,32 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 env:
-  DEVELOPER_DIR: /Applications/Xcode_15.0.app/Contents/Developer
+  OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 jobs:
   get_targets:
     name: Get Targets
-    runs-on: macos-13
+    runs-on: shape
     outputs:
       targets: ${{ steps.get_targets.outputs.targets }}
     steps:
+      - name: Install 1Password CLI
+        uses: 1password/install-cli-action@v1
+        with:
+          version: 2.18.0
+      - name: Install SSH Key
+        uses: shapehq/actions/install-ci-ssh-key@main
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - name: Install xcodegen
         run: brew install xcodegen
       - name: Generate .xcodeproj
         run: xcodegen
+      - name: Select Xcode Version
+        uses: shapehq/actions/xcode-select@main
+        with:
+          version: 15.x.x
       - name: Get Targets
         id: get_targets
         run: |
@@ -29,7 +41,7 @@ jobs:
           echo "targets=${TARGETS}" >> $GITHUB_OUTPUT
   build:
     name: Build for iPhone 14
-    runs-on: macos-latest
+    runs-on: shape
     needs:
       - get_targets
     strategy:
@@ -37,17 +49,30 @@ jobs:
       matrix:
         target: ${{ fromJSON(needs.get_targets.outputs.targets) }}
     steps:
+    - name: Install 1Password CLI
+      uses: 1password/install-cli-action@v1
+      with:
+        version: 2.18.0
+    - name: Install SSH Key
+      uses: shapehq/actions/install-ci-ssh-key@main
     - name: Checkout
       uses: actions/checkout@v3
       with:
         submodules: recursive
+    - name: Install Company Development Certificate
+      uses: shapehq/actions/install-company-development-certificate@install-company-development-certificate
     - name: Install xcodegen
       run: brew install xcodegen
     - name: Generate .xcodeproj
       run: xcodegen
+    - name: Select Xcode Version
+      uses: shapehq/actions/xcode-select@main
+      with:
+        version: 15.x.x
     - name: Build
       run: |
         xcodebuild build-for-testing\
           -scheme ${{ matrix.target }}\
           -sdk iphonesimulator\
-          -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.4'\
+          -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0'\
+          -allowProvisioningUpdates
