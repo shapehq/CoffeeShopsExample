@@ -7,24 +7,39 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 env:
-  DEVELOPER_DIR: /Applications/Xcode_15.0.app/Contents/Developer
+  OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 jobs:
   build:
     name: Run unit tests
-    runs-on: macos-13
+    runs-on: shape
     steps:
+      - name: Install 1Password CLI
+        uses: 1password/install-cli-action@v1
+        with:
+          version: 2.18.0
+      - name: Install SSH Key
+        uses: shapehq/actions/install-ci-ssh-key@main
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Install Company Development Certificate
+        uses: shapehq/actions/install-company-development-certificate@install-company-development-certificate
       - name: Install xcodegen
         run: brew install xcodegen
       - name: Generate .xcodeproj
         run: xcodegen
+      - name: Select Xcode Version
+        uses: shapehq/actions/xcode-select@main
+        with:
+          version: 15.x.x
       - name: Build
         run: |
           xcodebuild build-for-testing\
             -scheme CoffeeShops\
             -sdk iphonesimulator\
-            -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.4'
+            -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.4'\
+            -allowProvisioningUpdates
       - name: Test
         run: |
           xcodebuild test-without-building\
