@@ -24,7 +24,7 @@ jobs:
       - name: Get Targets
         id: get_targets
         run: |
-          PROJECT="./Norlys.xcodeproj"
+          PROJECT="./CoffeeShops.xcodeproj"
           TARGETS=$(xcodebuild -quiet -list -json -project $PROJECT | jq -c '.project.targets')
           echo "targets=${TARGETS}" >> $GITHUB_OUTPUT
   build:
