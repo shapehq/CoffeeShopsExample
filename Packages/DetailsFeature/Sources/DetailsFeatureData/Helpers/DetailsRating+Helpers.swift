@@ -1,0 +1,21 @@
+import DB
+import DetailsFeatureDomain
+
+extension DetailsRating {
+    init(_ rating: DBRating) {
+        switch rating {
+        case .unavailable:
+            self = .unavailable
+        case .one:
+            self = .one
+        case .two:
+            self = .two
+        case .three:
+            self = .three
+        case .four:
+            self = .four
+        case .five:
+            self = .five
+        }
+    }
+}
