@@ -30,6 +30,11 @@ public struct MapView<
             }
             UserAnnotation()
         }
+        .mapControls {
+            MapUserLocationButton()
+            MapCompass()
+            MapScaleView()
+        }
         .sheetPresentation(
             presentedItem: $selection.animation(),
             detents: [.medium()],
