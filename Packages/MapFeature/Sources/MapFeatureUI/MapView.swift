@@ -28,6 +28,7 @@ public struct MapView<
                 )
                 .tint(Color(poi.color))
             }
+            UserAnnotation()
         }
         .sheetPresentation(
             presentedItem: $selection.animation(),
