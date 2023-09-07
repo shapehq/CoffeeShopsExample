@@ -51,6 +51,9 @@ public struct MapView<
             position = .region(context.region)
             showPointsOfInterest(in: context.region)
         }
+        .onAppear {
+            requestLocationAuthorizationIfNeeded()
+        }
     }
 }
 
@@ -79,6 +82,18 @@ private extension MapView {
     private func reselectPOIIfNeeded(selectingFrom newPOIs: [MapPOI]) {
         if let oldSelectedPOI = selection {
             selection = newPOIs.first { $0.id == oldSelectedPOI.id }
+        }
+    }
+
+    private func requestLocationAuthorizationIfNeeded() {
+        let locationManager = CLLocationManager()
+        switch locationManager.authorizationStatus {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted, .denied, .authorizedAlways, .authorizedWhenInUse:
+            break
+        @unknown default:
+            break
         }
     }
 }
