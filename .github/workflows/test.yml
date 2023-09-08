@@ -24,7 +24,7 @@ jobs:
         with:
           submodules: recursive
       - name: Install Company Development Certificate
-        uses: shapehq/actions/install-company-development-certificate
+        uses: shapehq/actions/install-company-development-certificate@main
       - name: Install xcodegen
         run: brew install xcodegen
       - name: Generate .xcodeproj
