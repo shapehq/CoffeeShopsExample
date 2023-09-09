@@ -23,7 +23,7 @@ public struct DetailsView<DetailsServiceType: DetailsService>: View {
     }
 
     public var body: some View {
-        CardContainer {
+        ScrollView(.vertical) {
             VStack(spacing: 0) {
                 HeaderView(title: sparseDetails.title) {
                     mapsLauncher.openMaps(

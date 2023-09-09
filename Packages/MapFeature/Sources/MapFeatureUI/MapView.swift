@@ -35,13 +35,12 @@ public struct MapView<
             MapCompass()
             MapScaleView()
         }
-        .sheetPresentation(
-            presentedItem: $selection.animation(),
-            detents: [.medium()],
-            largestUndimmedDetentIdentifier: .medium,
-            prefersGrabberVisible: false
-        ) { selectedPOI in
+        .sheet(item: $selection.animation()) { selectedPOI in
             childViewFactory.makeDetailsView(showing: selectedPOI)
+                .presentationDetents([.medium, .large])
+                .presentationBackground(.regularMaterial)
+                .presentationCornerRadius(18)
+                .presentationBackgroundInteraction(.enabled(upThrough: .medium))
         }
         .tabItem {
             Image(systemName: "mug")
