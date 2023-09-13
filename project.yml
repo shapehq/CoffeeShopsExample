@@ -96,6 +96,7 @@ configFiles:
   Release: Configs/Base.xcconfig
 fileGroups:
   - project.yml
+  - Configs/Base.xcconfig
 packages:
   AnyAsync:
     path: Packages/AnyAsync
