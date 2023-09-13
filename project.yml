@@ -7,9 +7,6 @@ targets:
     platform: iOS
     deploymentTarget: "17.0"
     sources: CoffeeShops
-    settings:
-      GENERATE_INFOPLIST_FILE: YES
-      INFOPLIST_KEY_UILaunchScreen_Generation: YES
     postCompileScripts:
     - name: Run SwiftLint
       path: scripts/swiftlint.sh
@@ -51,9 +48,6 @@ targets:
     sources: 
       - path: DevApps/OnboardingDevApp
         group: DevApps
-    settings:
-      GENERATE_INFOPLIST_FILE: YES
-      INFOPLIST_KEY_UILaunchScreen_Generation: YES
     dependencies:
       - package: OnboardingFeature
         product: OnboardingFeatureUI
@@ -64,9 +58,6 @@ targets:
     sources: 
       - path: DevApps/DetailsDevApp
         group: DevApps
-    settings:
-      GENERATE_INFOPLIST_FILE: YES
-      INFOPLIST_KEY_UILaunchScreen_Generation: YES
     dependencies:
       - package: DetailsFeature
         product: DetailsFeatureDomain
@@ -81,9 +72,6 @@ targets:
     sources:
       - path: DevApps/MapDevApp
         group: DevApps
-    settings:
-      GENERATE_INFOPLIST_FILE: YES
-      INFOPLIST_KEY_UILaunchScreen_Generation: YES
     dependencies:
       - package: MapFeature
         product: MapFeatureDomain
@@ -96,9 +84,6 @@ targets:
     sources:
       - path: DevApps/ProfileDevApp
         group: DevApps
-    settings:
-      GENERATE_INFOPLIST_FILE: YES
-      INFOPLIST_KEY_UILaunchScreen_Generation: YES
     dependencies:
       - package: Authentication
         product: AuthenticationDomain
@@ -106,14 +91,9 @@ targets:
         product: MapsLauncherData
       - package: ProfileFeature
         product: ProfileFeatureUI
-settings:
-  CURRENT_PROJECT_VERSION: 1
-  MARKETING_VERSION: "1.0"
-  ENABLE_USER_SCRIPT_SANDBOXING: NO
-  ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: YES
-  DEVELOPMENT_TEAM: 566MC7D8D4
-  INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown
-  INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown
+configFiles:
+  Debug: Configs/Base.xcconfig
+  Release: Configs/Base.xcconfig
 fileGroups:
   - project.yml
 packages:
