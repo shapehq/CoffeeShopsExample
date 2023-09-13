@@ -28,28 +28,28 @@
     },
     {
       "target" : {
-        "containerPath" : "container:..\/AnyAsync",
+        "containerPath" : "container:Packages\/AnyAsync",
         "identifier" : "AnyAsyncTests",
         "name" : "AnyAsyncTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:..\/DetailsFeature",
+        "containerPath" : "container:Packages\/DetailsFeature",
         "identifier" : "DetailsFeatureDataTests",
         "name" : "DetailsFeatureDataTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:",
+        "containerPath" : "container:Packages\/MapFeature",
         "identifier" : "MapFeatureDataTests",
         "name" : "MapFeatureDataTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:..\/ProfileFeature",
+        "containerPath" : "container:Packages\/ProfileFeature",
         "identifier" : "ProfileFeatureDataTests",
         "name" : "ProfileFeatureDataTests"
       }
