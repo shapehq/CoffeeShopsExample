@@ -18,11 +18,12 @@ import SwiftUI
 
 @main
 struct CoffeeShopsApp: App {
-    private let credentialsStore = UserDefaultsCredentialsStore(userDefaults: .standard)
-    private let db = SwiftDataDB(isStoredInMemoryOnly: false)
+    private let credentialsStore: CredentialsStoring
     private let authenticationChecker: AuthenticationChecking
+    private let db = SwiftDataDB(isStoredInMemoryOnly: false)
 
     init() {
+        credentialsStore = UserDefaultsCredentialsStore(userDefaults: .standard)
         authenticationChecker = AuthenticationChecker(credentialsStore: credentialsStore)
     }
 
