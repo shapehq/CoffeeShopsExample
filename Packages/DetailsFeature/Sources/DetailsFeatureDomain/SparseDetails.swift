@@ -11,8 +11,8 @@ public struct SparseDetails: Equatable {
         title: String,
         latitude: Double,
         longitude: Double,
-        phoneNumber: String?,
-        websiteURL: URL?
+        phoneNumber: String? = nil,
+        websiteURL: URL? = nil
     ) {
         self.title = title
         self.latitude = latitude
