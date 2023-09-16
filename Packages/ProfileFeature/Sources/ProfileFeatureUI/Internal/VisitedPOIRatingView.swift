@@ -2,7 +2,7 @@ import ProfileFeatureDomain
 import SwiftUI
 
 struct RatingView: View {
-    let rating: VisitedCoffeeShopRating
+    let rating: VisitedPOIRating
 
     var body: some View {
         HStack {

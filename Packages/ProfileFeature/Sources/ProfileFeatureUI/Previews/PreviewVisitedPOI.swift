@@ -1,12 +1,12 @@
 import ProfileFeatureDomain
 
-struct PreviewVisitedCoffeeShop: VisitedCofeeShop, Equatable {
+struct PreviewVisitedPOI: VisitedPOI, Equatable {
     var id: String {
         title
     }
     let title: String
     let latitude: Double
     let longitude: Double
-    let rating: VisitedCoffeeShopRating
+    let rating: VisitedPOIRating
     let note: String?
 }

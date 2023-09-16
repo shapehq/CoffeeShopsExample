@@ -1,6 +1,6 @@
 import Foundation
 
-public enum VisitedCoffeeShopRating: Int, Comparable {
+public enum VisitedPOIRating: Int, Comparable {
     case unavailable = -1
     case one = 1
     case two = 2

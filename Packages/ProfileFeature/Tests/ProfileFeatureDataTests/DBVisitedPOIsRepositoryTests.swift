@@ -2,7 +2,7 @@ import DB
 import ProfileFeatureData
 import XCTest
 
-final class DBVisitedCoffeeShopsRepositoryTests: XCTestCase {
+final class DBVisitedPOIsRepositoryTests: XCTestCase {
     func testItStoresVisitedCoffeeShop() async throws {
         let mockDBPPOI = MockDBPOI(
             id: DBPOIID(latitude: 56, longitude: 10),
@@ -11,19 +11,19 @@ final class DBVisitedCoffeeShopsRepositoryTests: XCTestCase {
             longitude: 10
         )
         let dbPOIRepository = MockDBPOIRepository(content: [mockDBPPOI])
-        let repository = DBVisitedCoffeeShopsRepository(dbPOIRepository: dbPOIRepository)
+        let repository = DBVisitedPOIsRepository(dbPOIRepository: dbPOIRepository)
         let expectation = XCTestExpectation(description: "timeout")
         let task = Task {
-            _ = repository.visitedCoffeeShops
+            _ = repository.visitedPOIs
             try await Task.sleep(for: .seconds(0.1))
-            if let visitedCoffeeShop = repository.visitedCoffeeShops.first {
+            if let visitedCoffeeShop = repository.visitedPOIs.first {
                 XCTAssertEqual(visitedCoffeeShop.id, DBPOIID(latitude: 56, longitude: 10))
                 XCTAssertEqual(visitedCoffeeShop.title, "Foo")
                 XCTAssertEqual(visitedCoffeeShop.latitude, 56)
                 XCTAssertEqual(visitedCoffeeShop.longitude, 10)
                 expectation.fulfill()
             } else {
-                XCTFail("visitedCoffeeShops is empty")
+                XCTFail("visitedPOIs is empty")
                 expectation.fulfill()
             }
         }
@@ -40,17 +40,17 @@ final class DBVisitedCoffeeShopsRepositoryTests: XCTestCase {
             longitude: 10
         )
         let dbPOIRepository = MockDBPOIRepository(content: [mockDBPPOI])
-        let repository = DBVisitedCoffeeShopsRepository(dbPOIRepository: dbPOIRepository)
+        let repository = DBVisitedPOIsRepository(dbPOIRepository: dbPOIRepository)
         let expectation = XCTestExpectation(description: "timeout")
         let task = Task {
-            _ = repository.visitedCoffeeShops
+            _ = repository.visitedPOIs
             try await Task.sleep(for: .seconds(0.1))
-            if let visitedCoffeeShop = repository.visitedCoffeeShops.first {
-                repository.deleteVisitedCoffeeShop(visitedCoffeeShop)
+            if let poi = repository.visitedPOIs.first {
+                repository.deleteVisitedPOI(poi)
                 XCTAssertEqual(dbPOIRepository.deletedPOIID, idToDelete)
                 expectation.fulfill()
             } else {
-                XCTFail("visitedCoffeeShops is empty")
+                XCTFail("visitedPOIs is empty")
                 expectation.fulfill()
             }
         }

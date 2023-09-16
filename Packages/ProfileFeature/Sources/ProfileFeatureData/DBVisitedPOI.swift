@@ -1,12 +1,12 @@
 import DB
 import ProfileFeatureDomain
 
-public struct DBVisitedCoffeeShop<DBPOIType: DBPOI>: VisitedCofeeShop {
+public struct DBVisitedPOI<DBPOIType: DBPOI>: VisitedPOI {
     public let id: DBPOIID
     public let title: String
     public let latitude: Double
     public let longitude: Double
-    public let rating: VisitedCoffeeShopRating
+    public let rating: VisitedPOIRating
     public let note: String?
 
     let dbPOI: DBPOIType
@@ -17,7 +17,7 @@ public struct DBVisitedCoffeeShop<DBPOIType: DBPOI>: VisitedCofeeShop {
         self.title = dbPOI.title
         self.latitude = dbPOI.latitude
         self.longitude = dbPOI.longitude
-        self.rating = VisitedCoffeeShopRating(dbPOI.rating)
+        self.rating = VisitedPOIRating(dbPOI.rating)
         self.note = dbPOI.note
     }
 }

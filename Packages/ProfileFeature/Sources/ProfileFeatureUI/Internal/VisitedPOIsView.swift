@@ -2,21 +2,21 @@ import MapsLauncherDomain
 import ProfileFeatureDomain
 import SwiftUI
 
-struct VisitedCoffeeShopsView<VisitedCoffeeShopsRepositoryType: VisitedCoffeeShopsRepository>: View {
-    @Bindable var visitedCoffeeShopsRepository: VisitedCoffeeShopsRepositoryType
+struct VisitedPOIsView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: View {
+    @Bindable var visitedPOIsRepository: VisitedPOIsRepositoryType
     let mapsLauncher: MapsLaunching
 
     var body: some View {
         Group {
-            if visitedCoffeeShopsRepository.visitedCoffeeShops.isEmpty {
+            if visitedPOIsRepository.visitedPOIs.isEmpty {
                 ContentUnavailableView {
                     Label("No Coffee Shops", systemImage: "mug")
                 } description: {
                     Text("You have not visited any coffee shops.")
                 }
             } else {
-                VisitedCoffeeShopListView(
-                    visitedCoffeeShopsRepository: visitedCoffeeShopsRepository,
+                VisitedPOIListView(
+                    visitedPOIsRepository: visitedPOIsRepository,
                     mapsLauncher: mapsLauncher
                 )
             }

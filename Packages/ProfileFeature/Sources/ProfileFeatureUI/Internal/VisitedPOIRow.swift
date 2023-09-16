@@ -2,25 +2,25 @@ import MapsLauncherDomain
 import ProfileFeatureDomain
 import SwiftUI
 
-struct VisitedCoffeeShopRow: View {
-    let visitedCoffeeShop: any VisitedCofeeShop
+struct VisitedPOIRow<VisitedPOIType: VisitedPOI>: View {
+    let visitedPOI: VisitedPOIType
     let mapsLauncher: MapsLaunching
     let onDelete: () -> Void
 
     var body: some View {
         Button {
             mapsLauncher.openMaps(
-                showingLatitude: visitedCoffeeShop.latitude,
-                longitude: visitedCoffeeShop.longitude
+                showingLatitude: visitedPOI.latitude,
+                longitude: visitedPOI.longitude
             )
         } label: {
             VStack(alignment: .leading, spacing: 5) {
                 HStack {
-                    Text(visitedCoffeeShop.title)
+                    Text(visitedPOI.title)
                     Spacer()
-                    RatingView(rating: visitedCoffeeShop.rating)
+                    RatingView(rating: visitedPOI.rating)
                 }
-                if let note = visitedCoffeeShop.note {
+                if let note = visitedPOI.note {
                     Text(note)
                         .font(.footnote)
                 }
@@ -39,8 +39,8 @@ struct VisitedCoffeeShopRow: View {
 }
 
 #Preview {
-    VisitedCoffeeShopRow(
-        visitedCoffeeShop: PreviewVisitedCoffeeShop(
+    VisitedPOIRow(
+        visitedPOI: PreviewVisitedPOI(
             title: "Prufrock Coffee",
             latitude: 51.52004066260156,
             longitude: -0.10943098689930579,

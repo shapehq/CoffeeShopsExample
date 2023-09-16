@@ -1,30 +1,30 @@
 import AnyAsync
 import ProfileFeatureDomain
 
-final class PreviewVisitedCoffeeShopsRepository: VisitedCoffeeShopsRepository {
-    private(set) var visitedCoffeeShops: [PreviewVisitedCoffeeShop] = [
-        PreviewVisitedCoffeeShop(
+final class PreviewVisitedPOIsRepository: VisitedPOIsRepository {
+    private(set) var visitedPOIs: [PreviewVisitedPOI] = [
+        PreviewVisitedPOI(
             title: "Prufrock Coffee",
             latitude: 51.52004066260156,
             longitude: -0.10943098689930579,
             rating: .five,
             note: "Excellent coffee. Common place to work from."
         ),
-        PreviewVisitedCoffeeShop(
+        PreviewVisitedPOI(
             title: "Rapha London",
             latitude: 51.51092038993181,
             longitude: -0.13664944343263805,
             rating: .two,
             note: "Great for cycling enthusiasts!"
         ),
-        PreviewVisitedCoffeeShop(
+        PreviewVisitedPOI(
             title: "Black Sheep Coffee",
             latitude: 51.49314528412428,
             longitude: -0.1489984399878538,
             rating: .three,
             note: nil
         ),
-        PreviewVisitedCoffeeShop(
+        PreviewVisitedPOI(
             title: "Back in Black",
             latitude: 48.85726817723269,
             longitude: 2.368860624963221,
@@ -33,7 +33,7 @@ final class PreviewVisitedCoffeeShopsRepository: VisitedCoffeeShopsRepository {
         )
     ]
 
-    func deleteVisitedCoffeeShop(_ coffeeShop: PreviewVisitedCoffeeShop) {
-        visitedCoffeeShops.removeAll { $0 == coffeeShop }
+    func deleteVisitedPOI(_ poi: PreviewVisitedPOI) {
+        visitedPOIs.removeAll { $0 == poi }
     }
 }

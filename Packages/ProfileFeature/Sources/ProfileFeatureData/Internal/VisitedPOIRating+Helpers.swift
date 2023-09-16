@@ -1,7 +1,7 @@
 import DB
 import ProfileFeatureDomain
 
-extension VisitedCoffeeShopRating {
+extension VisitedPOIRating {
     init(_ rating: DBRating) {
         switch rating {
         case .unavailable:
