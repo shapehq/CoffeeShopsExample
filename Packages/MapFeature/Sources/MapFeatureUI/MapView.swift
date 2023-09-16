@@ -99,7 +99,7 @@ private extension MapView {
 }
 
 #Preview {
-    MapView(mapPOIService: PreviewMapPOIService()) {
-        _ in Text("POI Details")
+    MapView(mapPOIService: PreviewMapPOIService()) { _ in
+        Text("POI Details")
     }
 }
