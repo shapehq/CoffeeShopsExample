@@ -11,7 +11,7 @@ struct AppDetailsView<DetailsServiceType: DetailsService>: View {
     let mapsLauncher: MapsLaunching
 
     var body: some View {
-        return DetailsView(
+        DetailsView(
             SparseDetails(
                 title: poi.title,
                 latitude: poi.latitude,
