@@ -16,7 +16,6 @@ struct DetailsDevApp: App {
                     websiteURL: URL(string: "https://prufrockcoffee.com")
                 ),
                 detailsService: MockDetailsService(),
-                lookAroundSceneLoader: NullObjectLookAroundSceneLoader(),
                 mapsLauncher: MapKitMapsLauncher()
             )
         }

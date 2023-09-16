@@ -8,7 +8,6 @@ import SwiftUI
 struct AppDetailsView<DetailsServiceType: DetailsService>: View {
     let poi: MapPOI
     let detailsService: DetailsServiceType
-    let lookAroundSceneLoader: LookAroundSceneLoading
     let mapsLauncher: MapsLaunching
 
     var body: some View {
@@ -21,7 +20,6 @@ struct AppDetailsView<DetailsServiceType: DetailsService>: View {
                 websiteURL: poi.websiteURL
             ),
             detailsService: detailsService,
-            lookAroundSceneLoader: lookAroundSceneLoader,
             mapsLauncher: mapsLauncher
         )
     }

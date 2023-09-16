@@ -57,7 +57,6 @@ private extension CoffeeShopsApp {
             AppDetailsView(
                 poi: poi,
                 detailsService: DBDetailsService(dbPOIRepository: dbPOIRepository),
-                lookAroundSceneLoader: MapKitLookAroundSceneLoader(),
                 mapsLauncher: mapsLauncher
             )
         }

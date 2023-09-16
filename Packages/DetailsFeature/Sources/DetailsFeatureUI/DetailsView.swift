@@ -6,19 +6,16 @@ import SwiftUI
 public struct DetailsView<DetailsServiceType: DetailsService>: View {
     private let sparseDetails: SparseDetails
     private let detailsService: DetailsServiceType
-    private let lookAroundSceneLoader: LookAroundSceneLoading
     private let mapsLauncher: MapsLaunching
     @State private var details: DetailsServiceType.DetailsType?
 
     public init(
         _ sparseDetails: SparseDetails,
         detailsService: DetailsServiceType,
-        lookAroundSceneLoader: LookAroundSceneLoading,
         mapsLauncher: MapsLaunching
     ) {
         self.sparseDetails = sparseDetails
         self.detailsService = detailsService
-        self.lookAroundSceneLoader = lookAroundSceneLoader
         self.mapsLauncher = mapsLauncher
     }
 
@@ -56,10 +53,12 @@ public struct DetailsView<DetailsServiceType: DetailsService>: View {
 
 private extension DetailsView {
     private func loadLookAroundScene() async throws -> MKLookAroundScene? {
-        try await lookAroundSceneLoader.lookAroundScene(
-            atLatitude: sparseDetails.latitude,
+        let coordinate = CLLocationCoordinate2D(
+            latitude: sparseDetails.latitude,
             longitude: sparseDetails.longitude
         )
+        let request = MKLookAroundSceneRequest(coordinate: coordinate)
+        return try await request.scene
     }
 
     private func loadDetails() async {
@@ -79,7 +78,6 @@ private extension DetailsView {
             websiteURL: URL(string: "https://prufrockcoffee.com")
         ),
         detailsService: PreviewDetailsService(),
-        lookAroundSceneLoader: PreviewLookAroundSceneLoader(),
         mapsLauncher: PreviewMapsLauncher()
     )
 }
