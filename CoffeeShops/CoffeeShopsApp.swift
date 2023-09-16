@@ -18,7 +18,9 @@ import SwiftUI
 
 @main
 struct CoffeeShopsApp: App {
-    private let credentialsStore: CredentialsStoring = UserDefaultsCredentialsStore(userDefaults: .standard)
+    private let credentialsStore: CredentialsStoring = UserDefaultsCredentialsStore(
+        userDefaults: .standard
+    )
     private let db = SwiftDataDB(isStoredInMemoryOnly: false)
 
     var body: some Scene {
