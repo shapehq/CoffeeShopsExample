@@ -18,12 +18,8 @@ import SwiftUI
 
 @main
 struct CoffeeShopsApp: App {
-    private let credentialsStore: CredentialsStoring
+    private let credentialsStore: CredentialsStoring = UserDefaultsCredentialsStore(userDefaults: .standard)
     private let db = SwiftDataDB(isStoredInMemoryOnly: false)
-
-    init() {
-        credentialsStore = UserDefaultsCredentialsStore(userDefaults: .standard)
-    }
 
     var body: some Scene {
         WindowGroup {
