@@ -52,15 +52,15 @@ private extension CoffeeShopsApp {
                         dbPOIRepository: dbPOIRepository
                     )
                 )
-            ),
-            childViewFactory: AppMapChildViewFactory(
-                detailsService: DBDetailsService(
-                    dbPOIRepository: dbPOIRepository
-                ),
+            )
+        ) { poi in
+            AppDetailsView(
+                poi: poi,
+                detailsService: DBDetailsService(dbPOIRepository: dbPOIRepository),
                 lookAroundSceneLoader: MapKitLookAroundSceneLoader(),
                 mapsLauncher: mapsLauncher
             )
-        )
+        }
     }
 
     private var profileView: some View {

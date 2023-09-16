@@ -3,19 +3,20 @@ import MapKit
 import SwiftUI
 import UIKit
 
-public struct MapView<
-    MapChildViewFactoryType: MapChildViewFactory
->: View {
+public struct MapView<DetailView: View>: View {
     private let mapPOIService: MapPOIService
-    private let childViewFactory: MapChildViewFactoryType
+    private let makeDetailView: (MapPOI) -> DetailView
     @State private var pointsOfInterest: [MapPOI] = []
     @State private var selection: MapPOI?
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
     @State private var poiTask: Task<(), Error>?
 
-    public init(mapPOIService: MapPOIService, childViewFactory: MapChildViewFactoryType) {
+    public init(
+        mapPOIService: MapPOIService,
+        @ViewBuilder detailView makeDetailView: @escaping (MapPOI) -> DetailView
+    ) {
         self.mapPOIService = mapPOIService
-        self.childViewFactory = childViewFactory
+        self.makeDetailView = makeDetailView
     }
 
     public var body: some View {
@@ -36,7 +37,7 @@ public struct MapView<
             MapScaleView()
         }
         .sheet(item: $selection.animation()) { selectedPOI in
-            childViewFactory.makeDetailsView(showing: selectedPOI)
+            makeDetailView(selectedPOI)
                 .presentationDetents([.medium, .large])
                 .presentationBackground(.regularMaterial)
                 .presentationCornerRadius(18)
@@ -98,8 +99,7 @@ private extension MapView {
 }
 
 #Preview {
-    MapView(
-        mapPOIService: PreviewMapPOIService(),
-        childViewFactory: PreviewMapChildViewFactory()
-    )
+    MapView(mapPOIService: PreviewMapPOIService()) {
+        _ in Text("POI Details")
+    }
 }

@@ -5,21 +5,21 @@ import MapFeatureUI
 import MapsLauncherDomain
 import SwiftUI
 
-struct AppMapChildViewFactory<DetailsServiceType: DetailsService>: MapChildViewFactory {
+struct AppDetailsView<DetailsServiceType: DetailsService>: View {
+    let poi: MapPOI
     let detailsService: DetailsServiceType
     let lookAroundSceneLoader: LookAroundSceneLoading
     let mapsLauncher: MapsLaunching
 
-    func makeDetailsView(showing marker: MapPOI) -> some View {
-        let sparseDetails = SparseDetails(
-            title: marker.title,
-            latitude: marker.latitude,
-            longitude: marker.longitude,
-            phoneNumber: marker.phoneNumber,
-            websiteURL: marker.websiteURL
-        )
+    var body: some View {
         return DetailsView(
-            sparseDetails,
+            SparseDetails(
+                title: poi.title,
+                latitude: poi.latitude,
+                longitude: poi.longitude,
+                phoneNumber: poi.phoneNumber,
+                websiteURL: poi.websiteURL
+            ),
             detailsService: detailsService,
             lookAroundSceneLoader: lookAroundSceneLoader,
             mapsLauncher: mapsLauncher
