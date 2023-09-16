@@ -88,10 +88,8 @@ private extension CoffeeShopsApp {
     }
 
     private var dbPOIRepository: some DBPOIRepository {
-        SwiftDataPOIRepository(modelContext: modelContext)
-    }
-
-    private var modelContext: ModelContext {
-        ModelContext(db.modelContainer)
+        SwiftDataPOIRepository(
+            modelContext: ModelContext(db.modelContainer)
+        )
     }
 }
