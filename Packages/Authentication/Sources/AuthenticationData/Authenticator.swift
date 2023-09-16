@@ -4,6 +4,10 @@ import Observation
 
 @Observable
 public final class Authenticator: Authenticating {
+    public var isSignedIn: Bool {
+        credentialsStore.credentials != nil
+    }
+
     private let credentialsStore: CredentialsStoring
 
     public init(credentialsStore: CredentialsStoring) {

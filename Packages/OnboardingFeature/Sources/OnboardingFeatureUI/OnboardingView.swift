@@ -1,81 +1,35 @@
 import AuthenticationDomain
 import SwiftUI
 
-public struct OnboardingView: View {
-    @State private var isSignInPresented = false
-    @State private var isAuthenticating = false
+public struct OnboardingView<AuthenticatedView: View>: View {
     private let authenticator: Authenticating
-    private var backgroundImageSize: CGSize {
-        UIImage(resource: .coffeeShop).size
-    }
+    private let makeAuthenticatedView: () -> AuthenticatedView
 
-    public init(authenticator: Authenticating) {
+    public init(
+        authenticator: Authenticating,
+        @ViewBuilder makeAuthenticatedView: @escaping () -> AuthenticatedView
+    ) {
         self.authenticator = authenticator
+        self.makeAuthenticatedView = makeAuthenticatedView
     }
 
     public var body: some View {
-        NavigationView {
-            VStack {
-                if isSignInPresented {
-                    Spacer()
-                }
-                Image(.logo)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding([.leading, .trailing], isSignInPresented ? 75 : 50)
-                    .padding([.top])
-                    .shadow(radius: 10)
-                if !isSignInPresented {
-                    Spacer()
-                }
-                if isSignInPresented {
-                    Spacer().frame(height: 15)
-                    SignInFormView(showActivityIndicator: isAuthenticating) { email, password in
-                        signIn(withEmail: email, password: password)
-                    }
-                    Spacer()
-                }
-                if !isSignInPresented {
-                    OnboardingButtonsFooterView {
-                        withAnimation {
-                            isSignInPresented = true
-                        }
-                    }
-                }
-            }
-            .background {
-                OnboardingBackgroundView(isOffset: isSignInPresented, isDimmed: isSignInPresented)
-            }
-            .toolbar {
-                if isSignInPresented {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            withAnimation {
-                                isSignInPresented = false
-                            }
-                        } label: {
-                            Image(systemName: "chevron.left")
-                        }
-                        .tint(.white)
-                    }
-                }
-            }
+        if authenticator.isSignedIn {
+            makeAuthenticatedView()
+        } else {
+            LandingPageView(authenticator: authenticator)
         }
     }
 }
 
-private extension OnboardingView {
-    private func signIn(withEmail email: String, password: String) {
-        Task {
-            isAuthenticating = true
-            defer {
-                isAuthenticating = false
-            }
-            try await authenticator.signIn(withEmail: email, password: password)
-        }
+#Preview("Not Signed In") {
+    OnboardingView(authenticator: PreviewAuthenticator(isSignedIn: false)) {
+        Text("Signed In")
     }
 }
 
-#Preview {
-    OnboardingView(authenticator: NullObjectAuthenticator())
+#Preview("Signed In") {
+    OnboardingView(authenticator: PreviewAuthenticator(isSignedIn: true)) {
+        Text("Signed In")
+    }
 }

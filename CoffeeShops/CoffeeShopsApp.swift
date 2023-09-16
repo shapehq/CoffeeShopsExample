@@ -19,23 +19,19 @@ import SwiftUI
 @main
 struct CoffeeShopsApp: App {
     private let credentialsStore: CredentialsStoring
-    private let authenticationChecker: AuthenticationChecking
     private let db = SwiftDataDB(isStoredInMemoryOnly: false)
 
     init() {
         credentialsStore = UserDefaultsCredentialsStore(userDefaults: .standard)
-        authenticationChecker = AuthenticationChecker(credentialsStore: credentialsStore)
     }
 
     var body: some Scene {
         WindowGroup {
-            if authenticationChecker.isAuthenticated {
+            OnboardingView(authenticator: authenticator) {
                 TabView {
                     mapView
                     profileView
                 }
-            } else {
-                onboardingView
             }
         }
     }
@@ -72,10 +68,6 @@ private extension CoffeeShopsApp {
             ),
             mapsAppOpener: mapsAppOpener
         )
-    }
-
-    private var onboardingView: some View {
-        OnboardingView(authenticator: authenticator)
     }
 }
 

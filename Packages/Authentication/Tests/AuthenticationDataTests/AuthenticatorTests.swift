@@ -17,4 +17,17 @@ final class AuthenticatorTests: XCTestCase {
         authenticator.signOut()
         XCTAssertNil(credentialsStore.credentials)
     }
+
+    func testItReturnsUnauthenticatedWhenCredentialsStoreIsEmpty() {
+        let credentialsStore = MockCredentialsStore()
+        let authenticator = Authenticator(credentialsStore: credentialsStore)
+        XCTAssertFalse(authenticator.isSignedIn)
+    }
+
+    func testItReturnsAuthenticatedWhenCredentialsExist() {
+        let credentialsStore = MockCredentialsStore()
+        let authenticator = Authenticator(credentialsStore: credentialsStore)
+        credentialsStore.credentials = Credentials(accessToken: "foo", refreshToken: "bar")
+        XCTAssertTrue(authenticator.isSignedIn)
+    }
 }
