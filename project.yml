@@ -20,8 +20,8 @@ targets:
       product: DB
     - package: DB
       product: SwiftDataDB
-    - package: MapsLauncher
-      product: MapsLauncherData
+    - package: MapsAppOpener
+      product: MapsAppOpenerData
     - package: MapFeature
       product: MapFeatureData
     - package: MapFeature
@@ -63,8 +63,8 @@ targets:
         product: DetailsFeatureDomain
       - package: DetailsFeature
         product: DetailsFeatureUI
-      - package: MapsLauncher
-        product: MapsLauncherData
+      - package: MapsAppOpener
+        product: MapsAppOpenerData
   MapDevApp:
     type: application
     platform: iOS
@@ -87,8 +87,8 @@ targets:
     dependencies:
       - package: Authentication
         product: AuthenticationDomain
-      - package: MapsLauncher
-        product: MapsLauncherData
+      - package: MapsAppOpener
+        product: MapsAppOpenerData
       - package: ProfileFeature
         product: ProfileFeatureUI
 configFiles:
@@ -104,8 +104,8 @@ packages:
     path: Packages/Authentication
   DB:
     path: Packages/DB
-  MapsLauncher:
-    path: Packages/MapsLauncher
+  MapsAppOpener:
+    path: Packages/MapsAppOpener
   OnboardingFeature:
     path: Packages/OnboardingFeature
   DetailsFeature:

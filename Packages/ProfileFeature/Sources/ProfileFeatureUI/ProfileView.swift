@@ -1,12 +1,12 @@
 import AuthenticationDomain
-import MapsLauncherDomain
+import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
 public struct ProfileView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: View {
     private let authenticator: Authenticating
     private let visitedPOIsRepository: VisitedPOIsRepositoryType
-    private let mapsLauncher: MapsLaunching
+    private let mapsAppOpener: MapsAppOpening
     @State private var isConfirmLogOutPresented = false
     private var visitedPOIsDetail: String? {
         let visitedPOIs = visitedPOIsRepository.visitedPOIs
@@ -20,11 +20,11 @@ public struct ProfileView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: Vie
     public init(
         authenticator: Authenticating,
         visitedPOIsRepository: VisitedPOIsRepositoryType,
-        mapsLauncher: MapsLaunching
+        mapsAppOpener: MapsAppOpening
     ) {
         self.authenticator = authenticator
         self.visitedPOIsRepository = visitedPOIsRepository
-        self.mapsLauncher = mapsLauncher
+        self.mapsAppOpener = mapsAppOpener
     }
 
     public var body: some View {
@@ -40,7 +40,7 @@ public struct ProfileView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: Vie
                     NavigationLink {
                         VisitedPOIsView(
                             visitedPOIsRepository: visitedPOIsRepository,
-                            mapsLauncher: mapsLauncher
+                            mapsAppOpener: mapsAppOpener
                         )
                     } label: {
                         TitleDetailRow(
@@ -84,6 +84,6 @@ public struct ProfileView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: Vie
     ProfileView(
         authenticator: PreviewAuthenticator(),
         visitedPOIsRepository: PreviewVisitedPOIsRepository(),
-        mapsLauncher: PreviewMapsLauncher()
+        mapsAppOpener: PreviewMapsAppOpener()
     )
 }

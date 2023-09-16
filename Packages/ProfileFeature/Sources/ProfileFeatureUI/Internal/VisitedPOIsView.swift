@@ -1,10 +1,10 @@
-import MapsLauncherDomain
+import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
 struct VisitedPOIsView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: View {
     @Bindable var visitedPOIsRepository: VisitedPOIsRepositoryType
-    let mapsLauncher: MapsLaunching
+    let mapsAppOpener: MapsAppOpening
 
     var body: some View {
         Group {
@@ -17,7 +17,7 @@ struct VisitedPOIsView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: View {
             } else {
                 VisitedPOIListView(
                     visitedPOIsRepository: visitedPOIsRepository,
-                    mapsLauncher: mapsLauncher
+                    mapsAppOpener: mapsAppOpener
                 )
             }
         }

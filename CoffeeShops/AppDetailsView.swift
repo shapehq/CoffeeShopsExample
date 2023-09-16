@@ -2,13 +2,13 @@ import DetailsFeatureDomain
 import DetailsFeatureUI
 import MapFeatureDomain
 import MapFeatureUI
-import MapsLauncherDomain
+import MapsAppOpenerDomain
 import SwiftUI
 
 struct AppDetailsView<DetailsServiceType: DetailsService>: View {
     let poi: MapPOI
     let detailsService: DetailsServiceType
-    let mapsLauncher: MapsLaunching
+    let mapsAppOpener: MapsAppOpening
 
     var body: some View {
         DetailsView(
@@ -20,7 +20,7 @@ struct AppDetailsView<DetailsServiceType: DetailsService>: View {
                 websiteURL: poi.websiteURL
             ),
             detailsService: detailsService,
-            mapsLauncher: mapsLauncher
+            mapsAppOpener: mapsAppOpener
         )
     }
 }

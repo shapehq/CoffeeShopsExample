@@ -1,15 +1,15 @@
-import MapsLauncherDomain
+import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
 struct VisitedPOIRow<VisitedPOIType: VisitedPOI>: View {
     let visitedPOI: VisitedPOIType
-    let mapsLauncher: MapsLaunching
+    let mapsAppOpener: MapsAppOpening
     let onDelete: () -> Void
 
     var body: some View {
         Button {
-            mapsLauncher.openMaps(
+            mapsAppOpener.openMaps(
                 showingLatitude: visitedPOI.latitude,
                 longitude: visitedPOI.longitude
             )
@@ -47,6 +47,6 @@ struct VisitedPOIRow<VisitedPOIType: VisitedPOI>: View {
             rating: .five,
             note: "Excellent coffee. Common place to work from."
         ),
-        mapsLauncher: PreviewMapsLauncher()
+        mapsAppOpener: PreviewMapsAppOpener()
     ) { }
 }

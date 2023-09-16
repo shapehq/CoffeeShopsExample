@@ -21,7 +21,7 @@ let package = Package(
         .package(path: "../AnyAsync"),
         .package(path: "../Authentication"),
         .package(path: "../DB"),
-        .package(path: "../MapsLauncher")
+        .package(path: "../MapsAppOpener")
     ],
     targets: [
         .target(name: "ProfileFeatureData", dependencies: [
@@ -35,7 +35,7 @@ let package = Package(
         .target(name: "ProfileFeatureUI", dependencies: [
             "AnyAsync",
             .product(name: "AuthenticationDomain", package: "Authentication"),
-            .product(name: "MapsLauncherDomain", package: "MapsLauncher"),
+            .product(name: "MapsAppOpenerDomain", package: "MapsAppOpener"),
             "ProfileFeatureDomain"
         ], resources: [
             .process("Assets.xcassets")

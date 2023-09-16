@@ -1,7 +1,7 @@
 import MapKit
-import MapsLauncherDomain
+import MapsAppOpenerDomain
 
-public struct MapKitMapsLauncher: MapsLaunching {
+public struct MapKitMapsAppOpener: MapsAppOpening {
     public init() {}
 
     public func openMaps(showingLatitude latitude: Double, longitude: Double) {

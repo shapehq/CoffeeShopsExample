@@ -7,8 +7,8 @@ import DetailsFeatureUI
 import MapFeatureData
 import MapFeatureDomain
 import MapFeatureUI
-import MapsLauncherData
-import MapsLauncherDomain
+import MapsAppOpenerData
+import MapsAppOpenerDomain
 import OnboardingFeatureUI
 import ProfileFeatureData
 import ProfileFeatureUI
@@ -56,8 +56,10 @@ private extension CoffeeShopsApp {
         ) { poi in
             AppDetailsView(
                 poi: poi,
-                detailsService: DBDetailsService(dbPOIRepository: dbPOIRepository),
-                mapsLauncher: mapsLauncher
+                detailsService: DBDetailsService(
+                    dbPOIRepository: dbPOIRepository
+                ),
+                mapsAppOpener: mapsAppOpener
             )
         }
     }
@@ -68,7 +70,7 @@ private extension CoffeeShopsApp {
             visitedPOIsRepository: DBVisitedPOIsRepository(
                 dbPOIRepository: dbPOIRepository
             ),
-            mapsLauncher: mapsLauncher
+            mapsAppOpener: mapsAppOpener
         )
     }
 
@@ -78,8 +80,8 @@ private extension CoffeeShopsApp {
 }
 
 private extension CoffeeShopsApp {
-    private var mapsLauncher: some MapsLaunching {
-        MapKitMapsLauncher()
+    private var mapsAppOpener: some MapsAppOpening {
+        MapKitMapsAppOpener()
     }
 
     private var authenticator: some Authenticating {

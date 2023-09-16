@@ -1,4 +1,4 @@
-import MapsLauncherData
+import MapsAppOpenerData
 import ProfileFeatureUI
 import SwiftUI
 
@@ -9,7 +9,7 @@ struct ProfileDevApp: App {
             ProfileView(
                 authenticator: NullObjectAuthenticator(),
                 visitedCoffeeShopsRepository: MockVisitedCoffeeShopsRepository(),
-                mapsLauncher: MapKitMapsLauncher()
+                mapsAppOpener: MapKitMapsAppOpener()
             )
         }
     }

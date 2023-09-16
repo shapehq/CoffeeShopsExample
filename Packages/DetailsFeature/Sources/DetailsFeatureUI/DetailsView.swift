@@ -1,29 +1,29 @@
 import DetailsFeatureDomain
 import MapKit
-import MapsLauncherDomain
+import MapsAppOpenerDomain
 import SwiftUI
 
 public struct DetailsView<DetailsServiceType: DetailsService>: View {
     private let sparseDetails: SparseDetails
     private let detailsService: DetailsServiceType
-    private let mapsLauncher: MapsLaunching
+    private let mapsAppOpener: MapsAppOpening
     @State private var details: DetailsServiceType.DetailsType?
 
     public init(
         _ sparseDetails: SparseDetails,
         detailsService: DetailsServiceType,
-        mapsLauncher: MapsLaunching
+        mapsAppOpener: MapsAppOpening
     ) {
         self.sparseDetails = sparseDetails
         self.detailsService = detailsService
-        self.mapsLauncher = mapsLauncher
+        self.mapsAppOpener = mapsAppOpener
     }
 
     public var body: some View {
         ScrollView(.vertical) {
             VStack(spacing: 0) {
                 HeaderView(title: sparseDetails.title) {
-                    mapsLauncher.openMaps(
+                    mapsAppOpener.openMaps(
                         showingLatitude: sparseDetails.latitude,
                         longitude: sparseDetails.longitude
                     )
@@ -78,6 +78,6 @@ private extension DetailsView {
             websiteURL: URL(string: "https://prufrockcoffee.com")
         ),
         detailsService: PreviewDetailsService(),
-        mapsLauncher: PreviewMapsLauncher()
+        mapsAppOpener: PreviewMapsAppOpener()
     )
 }
