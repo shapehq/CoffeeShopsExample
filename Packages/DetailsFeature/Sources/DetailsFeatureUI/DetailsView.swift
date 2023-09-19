@@ -1,33 +1,21 @@
 import DetailsFeatureDomain
 import MapKit
-import MapsAppOpenerDomain
 import SwiftUI
 
 public struct DetailsView<DetailsServiceType: DetailsService>: View {
     private let sparseDetails: SparseDetails
     private let detailsService: DetailsServiceType
-    private let mapsAppOpener: MapsAppOpening
     @State private var details: DetailsServiceType.DetailsType?
 
-    public init(
-        _ sparseDetails: SparseDetails,
-        detailsService: DetailsServiceType,
-        mapsAppOpener: MapsAppOpening
-    ) {
+    public init(_ sparseDetails: SparseDetails, detailsService: DetailsServiceType) {
         self.sparseDetails = sparseDetails
         self.detailsService = detailsService
-        self.mapsAppOpener = mapsAppOpener
     }
 
     public var body: some View {
         ScrollView(.vertical) {
             VStack(spacing: 0) {
-                HeaderView(title: sparseDetails.title) {
-                    mapsAppOpener.openMaps(
-                        showingLatitude: sparseDetails.latitude,
-                        longitude: sparseDetails.longitude
-                    )
-                }
+                HeaderView(title: sparseDetails.title) { }
                 AsyncLookAroundPreview {
                     try await loadLookAroundScene()
                 }
@@ -77,7 +65,6 @@ private extension DetailsView {
             phoneNumber: "+44 20 7242 0467",
             websiteURL: URL(string: "https://prufrockcoffee.com")
         ),
-        detailsService: PreviewDetailsService(),
-        mapsAppOpener: PreviewMapsAppOpener()
+        detailsService: PreviewDetailsService()
     )
 }

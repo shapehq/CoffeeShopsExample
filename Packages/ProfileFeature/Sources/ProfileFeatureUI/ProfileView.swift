@@ -1,12 +1,10 @@
 import AuthenticationDomain
-import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
 public struct ProfileView<VisitedCoffeeShopRepositoryType: VisitedCoffeeShopRepository>: View {
     private let authenticator: Authenticating
     private let visitedCoffeeShopRepository: VisitedCoffeeShopRepositoryType
-    private let mapsAppOpener: MapsAppOpening
     @State private var isConfirmLogOutPresented = false
     private var visitedCoffeeShopsDetail: String? {
         let visitedCoffeeShops = visitedCoffeeShopRepository.visitedCoffeeShops
@@ -19,12 +17,10 @@ public struct ProfileView<VisitedCoffeeShopRepositoryType: VisitedCoffeeShopRepo
 
     public init(
         authenticator: Authenticating,
-        visitedCoffeeShopRepository: VisitedCoffeeShopRepositoryType,
-        mapsAppOpener: MapsAppOpening
+        visitedCoffeeShopRepository: VisitedCoffeeShopRepositoryType
     ) {
         self.authenticator = authenticator
         self.visitedCoffeeShopRepository = visitedCoffeeShopRepository
-        self.mapsAppOpener = mapsAppOpener
     }
 
     public var body: some View {
@@ -39,8 +35,7 @@ public struct ProfileView<VisitedCoffeeShopRepositoryType: VisitedCoffeeShopRepo
                 Section {
                     NavigationLink {
                         VisitedCoffeeShopsView(
-                            visitedCoffeeShopRepository: visitedCoffeeShopRepository,
-                            mapsAppOpener: mapsAppOpener
+                            visitedCoffeeShopRepository: visitedCoffeeShopRepository
                         )
                     } label: {
                         TitleDetailRow(
@@ -83,7 +78,6 @@ public struct ProfileView<VisitedCoffeeShopRepositoryType: VisitedCoffeeShopRepo
 #Preview {
     ProfileView(
         authenticator: PreviewAuthenticator(),
-        visitedCoffeeShopRepository: PreviewVisitedCoffeeShopRepository(),
-        mapsAppOpener: PreviewMapsAppOpener()
+        visitedCoffeeShopRepository: PreviewVisitedCoffeeShopRepository()
     )
 }

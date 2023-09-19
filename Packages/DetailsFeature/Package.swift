@@ -18,8 +18,7 @@ let package = Package(
         ])
     ],
     dependencies: [
-        .package(path: "../DB"),
-        .package(path: "../MapsAppOpener")
+        .package(path: "../DB")
     ],
     targets: [
         .target(name: "DetailsFeatureData", dependencies: [
@@ -28,8 +27,7 @@ let package = Package(
         ]),
         .target(name: "DetailsFeatureDomain"),
         .target(name: "DetailsFeatureUI", dependencies: [
-            "DetailsFeatureDomain",
-            .product(name: "MapsAppOpenerDomain", package: "MapsAppOpener")
+            "DetailsFeatureDomain"
         ]),
         .testTarget(name: "DetailsFeatureDataTests", dependencies: [
             "DB",

@@ -7,8 +7,6 @@ import DetailsFeatureUI
 import MapFeatureData
 import MapFeatureDomain
 import MapFeatureUI
-import MapsAppOpenerData
-import MapsAppOpenerDomain
 import OnboardingFeatureUI
 import ProfileFeatureData
 import ProfileFeatureUI
@@ -52,8 +50,7 @@ private extension CoffeeShopsApp {
                 marker: marker,
                 detailsService: PersistedDetailsService(
                     persistedCoffeeShopRepository: visitedCoffeeShopRepository
-                ),
-                mapsAppOpener: mapsAppOpener
+                )
             )
         }
     }
@@ -63,17 +60,12 @@ private extension CoffeeShopsApp {
             authenticator: authenticator,
             visitedCoffeeShopRepository: PersistedVisitedCoffeeShopRepository(
                 persistedCoffeeShopRepository: visitedCoffeeShopRepository
-            ),
-            mapsAppOpener: mapsAppOpener
+            )
         )
     }
 }
 
 private extension CoffeeShopsApp {
-    private var mapsAppOpener: some MapsAppOpening {
-        MapKitMapsAppOpener()
-    }
-
     private var authenticator: some Authenticating {
         Authenticator(credentialsStore: credentialsStore)
     }

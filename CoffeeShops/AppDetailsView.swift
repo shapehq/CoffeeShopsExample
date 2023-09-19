@@ -2,13 +2,11 @@ import DetailsFeatureDomain
 import DetailsFeatureUI
 import MapFeatureDomain
 import MapFeatureUI
-import MapsAppOpenerDomain
 import SwiftUI
 
 struct AppDetailsView<DetailsServiceType: DetailsService>: View {
     let marker: CoffeeShopMarker
     let detailsService: DetailsServiceType
-    let mapsAppOpener: MapsAppOpening
 
     var body: some View {
         DetailsView(
@@ -19,8 +17,7 @@ struct AppDetailsView<DetailsServiceType: DetailsService>: View {
                 phoneNumber: marker.phoneNumber,
                 websiteURL: marker.websiteURL
             ),
-            detailsService: detailsService,
-            mapsAppOpener: mapsAppOpener
+            detailsService: detailsService
         )
     }
 }

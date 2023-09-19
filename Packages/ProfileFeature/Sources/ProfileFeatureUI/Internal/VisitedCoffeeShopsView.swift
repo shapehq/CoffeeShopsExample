@@ -1,10 +1,8 @@
-import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
 struct VisitedCoffeeShopsView<VisitedCoffeeShopRepositoryType: VisitedCoffeeShopRepository>: View {
     @Bindable var visitedCoffeeShopRepository: VisitedCoffeeShopRepositoryType
-    let mapsAppOpener: MapsAppOpening
 
     var body: some View {
         Group {
@@ -16,8 +14,7 @@ struct VisitedCoffeeShopsView<VisitedCoffeeShopRepositoryType: VisitedCoffeeShop
                 }
             } else {
                 VisitedCoffeeShopListView(
-                    visitedCoffeeShopRepository: visitedCoffeeShopRepository,
-                    mapsAppOpener: mapsAppOpener
+                    visitedCoffeeShopRepository: visitedCoffeeShopRepository
                 )
             }
         }

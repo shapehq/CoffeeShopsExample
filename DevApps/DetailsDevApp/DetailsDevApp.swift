@@ -1,6 +1,5 @@
 import DetailsFeatureDomain
 import DetailsFeatureUI
-import MapsAppOpenerData
 import SwiftUI
 
 @main
@@ -15,8 +14,7 @@ struct DetailsDevApp: App {
                     phoneNumber: "+44 20 7242 0467",
                     websiteURL: URL(string: "https://prufrockcoffee.com")
                 ),
-                detailsService: MockDetailsService(),
-                mapsAppOpener: MapKitMapsAppOpener()
+                detailsService: MockDetailsService()
             )
         }
     }

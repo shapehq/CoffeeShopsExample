@@ -1,19 +1,12 @@
-import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
 struct VisitedCoffeeShopRow<VisitedCoffeeShopType: VisitedCoffeeShop>: View {
     let visitedCoffeeShop: VisitedCoffeeShopType
-    let mapsAppOpener: MapsAppOpening
     let onDelete: () -> Void
 
     var body: some View {
-        Button {
-            mapsAppOpener.openMaps(
-                showingLatitude: visitedCoffeeShop.latitude,
-                longitude: visitedCoffeeShop.longitude
-            )
-        } label: {
+        Button { } label: {
             VStack(alignment: .leading, spacing: 5) {
                 HStack {
                     Text(visitedCoffeeShop.title)
@@ -46,7 +39,6 @@ struct VisitedCoffeeShopRow<VisitedCoffeeShopType: VisitedCoffeeShop>: View {
             longitude: -0.10943098689930579,
             rating: .five,
             note: "Excellent coffee. Common place to work from."
-        ),
-        mapsAppOpener: PreviewMapsAppOpener()
+        )
     ) { }
 }
