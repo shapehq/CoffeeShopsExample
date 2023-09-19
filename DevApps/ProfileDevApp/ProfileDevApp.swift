@@ -8,7 +8,7 @@ struct ProfileDevApp: App {
         WindowGroup {
             ProfileView(
                 authenticator: NullObjectAuthenticator(),
-                visitedCoffeeShopsRepository: MockVisitedCoffeeShopsRepository(),
+                visitedCoffeeShopRepository: MockVisitedCoffeeShopRepository(),
                 mapsAppOpener: MapKitMapsAppOpener()
             )
         }

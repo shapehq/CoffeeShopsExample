@@ -9,7 +9,7 @@ struct MockDetailsService: DetailsService {
         self.note = note
     }
 
-    func pointOfInterestDetails(for sparseDetails: SparseDetails) async throws -> MockDetails {
+    func coffeeShopDetails(for sparseDetails: SparseDetails) async throws -> some Details & AnyObject {
         MockDetails(
             title: sparseDetails.title,
             latitude: sparseDetails.latitude,

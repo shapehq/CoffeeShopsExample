@@ -3,7 +3,7 @@ import Observation
 import ProfileFeatureDomain
 
 @Observable
-final class MockVisitedCoffeeShopsRepository: VisitedCoffeeShopsRepository {
+final class MockVisitedCoffeeShopRepository: VisitedCoffeeShopRepository {
     private(set) var visitedCoffeeShops: [MockVisitedCoffeeShop] = [
         MockVisitedCoffeeShop(
             title: "Prufrock Coffee",

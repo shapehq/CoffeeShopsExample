@@ -5,10 +5,15 @@ import SwiftUI
 struct MapDevApp: App {
     var body: some Scene {
         WindowGroup {
-            MapView(
-                mapPOIService: MockMapPOIService(),
-                childViewFactory: MapDevAppChildViewFactory()
-            )
+            MapView(mapCoffeeShopService: MockCoffeeShopMarkerService()) { _ in
+                ZStack(alignment: .topLeading) {
+                    Color.clear
+                        .background(.regularMaterial)
+                        .edgesIgnoringSafeArea(.all)
+                    Text("Mock Details")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                }
+            }
         }
     }
 }

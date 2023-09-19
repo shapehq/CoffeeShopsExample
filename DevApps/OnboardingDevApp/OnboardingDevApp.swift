@@ -5,7 +5,9 @@ import SwiftUI
 struct OnboardingDevApp: App {
     var body: some Scene {
         WindowGroup {
-            OnboardingView(authenticator: NullObjectAuthenticator())
+            OnboardingView(authenticator: NullObjectAuthenticator()) {
+                Text("Authenticated")
+            }
         }
     }
 }

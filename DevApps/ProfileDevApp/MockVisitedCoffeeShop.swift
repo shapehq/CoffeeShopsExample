@@ -1,6 +1,6 @@
 import ProfileFeatureDomain
 
-struct MockVisitedCoffeeShop: VisitedCofeeShop, Equatable {
+struct MockVisitedCoffeeShop: VisitedCoffeeShop, Equatable {
     var id: String {
         title
     }
