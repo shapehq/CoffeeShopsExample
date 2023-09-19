@@ -2,18 +2,18 @@ import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
-struct VisitedPOIListView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: View {
-    @Bindable var visitedPOIsRepository: VisitedPOIsRepositoryType
+struct VisitedPOIListView<VisitedPOIRepositoryType: VisitedPOIRepository>: View {
+    @Bindable var visitedPOIRepository: VisitedPOIRepositoryType
     let mapsAppOpener: MapsAppOpening
 
     var body: some View {
         List {
-            ForEach(visitedPOIsRepository.visitedPOIs) { visitedPOI in
+            ForEach(visitedPOIRepository.visitedPOIs) { visitedPOI in
                 VisitedPOIRow(
                     visitedPOI: visitedPOI,
                     mapsAppOpener: mapsAppOpener
                 ) {
-                    visitedPOIsRepository.deleteVisitedPOI(visitedPOI)
+                    visitedPOIRepository.deleteVisitedPOI(visitedPOI)
                 }
             }
         }

@@ -3,13 +3,13 @@ import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
-public struct ProfileView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: View {
+public struct ProfileView<VisitedPOIRepositoryType: VisitedPOIRepository>: View {
     private let authenticator: Authenticating
-    private let visitedPOIsRepository: VisitedPOIsRepositoryType
+    private let visitedPOIRepository: VisitedPOIRepositoryType
     private let mapsAppOpener: MapsAppOpening
     @State private var isConfirmLogOutPresented = false
     private var visitedPOIsDetail: String? {
-        let visitedPOIs = visitedPOIsRepository.visitedPOIs
+        let visitedPOIs = visitedPOIRepository.visitedPOIs
         if !visitedPOIs.isEmpty {
             return "\(visitedPOIs.count)"
         } else {
@@ -19,11 +19,11 @@ public struct ProfileView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: Vie
 
     public init(
         authenticator: Authenticating,
-        visitedPOIsRepository: VisitedPOIsRepositoryType,
+        visitedPOIRepository: VisitedPOIRepositoryType,
         mapsAppOpener: MapsAppOpening
     ) {
         self.authenticator = authenticator
-        self.visitedPOIsRepository = visitedPOIsRepository
+        self.visitedPOIRepository = visitedPOIRepository
         self.mapsAppOpener = mapsAppOpener
     }
 
@@ -39,7 +39,7 @@ public struct ProfileView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: Vie
                 Section {
                     NavigationLink {
                         VisitedPOIsView(
-                            visitedPOIsRepository: visitedPOIsRepository,
+                            visitedPOIRepository: visitedPOIRepository,
                             mapsAppOpener: mapsAppOpener
                         )
                     } label: {
@@ -83,7 +83,7 @@ public struct ProfileView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: Vie
 #Preview {
     ProfileView(
         authenticator: PreviewAuthenticator(),
-        visitedPOIsRepository: PreviewVisitedPOIsRepository(),
+        visitedPOIRepository: PreviewVisitedPOIRepository(),
         mapsAppOpener: PreviewMapsAppOpener()
     )
 }

@@ -1,7 +1,7 @@
 import AnyAsync
 import ProfileFeatureDomain
 
-final class PreviewVisitedPOIsRepository: VisitedPOIsRepository {
+final class PreviewVisitedPOIRepository: VisitedPOIRepository {
     private(set) var visitedPOIs: [PreviewVisitedPOI] = [
         PreviewVisitedPOI(
             title: "Prufrock Coffee",

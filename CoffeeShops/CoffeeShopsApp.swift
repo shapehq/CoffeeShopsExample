@@ -37,13 +37,13 @@ struct CoffeeShopsApp: App {
 
 private extension CoffeeShopsApp {
     private var mapView: some View {
-        let dbPOIRepository = self.dbPOIRepository
+        let visitedPOIRepository = self.visitedPOIRepository
         return MapView(
             mapPOIService: DebouncingMapPOIService(
                 decorating: CachingMapPOIService(
                     decorating: DBMapPOIService(
                         decorating: MapKitMapPOIService(),
-                        dbPOIRepository: dbPOIRepository
+                        dbPOIRepository: visitedPOIRepository
                     )
                 )
             )
@@ -51,7 +51,7 @@ private extension CoffeeShopsApp {
             AppDetailsView(
                 poi: poi,
                 detailsService: DBDetailsService(
-                    dbPOIRepository: dbPOIRepository
+                    dbPOIRepository: visitedPOIRepository
                 ),
                 mapsAppOpener: mapsAppOpener
             )
@@ -61,8 +61,8 @@ private extension CoffeeShopsApp {
     private var profileView: some View {
         ProfileView(
             authenticator: authenticator,
-            visitedPOIsRepository: DBVisitedPOIsRepository(
-                dbPOIRepository: dbPOIRepository
+            visitedPOIRepository: DBVisitedPOIRepository(
+                dbPOIRepository: visitedPOIRepository
             ),
             mapsAppOpener: mapsAppOpener
         )
@@ -78,7 +78,7 @@ private extension CoffeeShopsApp {
         Authenticator(credentialsStore: credentialsStore)
     }
 
-    private var dbPOIRepository: some DBPOIRepository {
+    private var visitedPOIRepository: some DBPOIRepository {
         SwiftDataPOIRepository(
             modelContext: ModelContext(db.modelContainer)
         )

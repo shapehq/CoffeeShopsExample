@@ -2,13 +2,13 @@ import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
-struct VisitedPOIsView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: View {
-    @Bindable var visitedPOIsRepository: VisitedPOIsRepositoryType
+struct VisitedPOIsView<VisitedPOIRepositoryType: VisitedPOIRepository>: View {
+    @Bindable var visitedPOIRepository: VisitedPOIRepositoryType
     let mapsAppOpener: MapsAppOpening
 
     var body: some View {
         Group {
-            if visitedPOIsRepository.visitedPOIs.isEmpty {
+            if visitedPOIRepository.visitedPOIs.isEmpty {
                 ContentUnavailableView {
                     Label("No Coffee Shops", systemImage: "mug")
                 } description: {
@@ -16,7 +16,7 @@ struct VisitedPOIsView<VisitedPOIsRepositoryType: VisitedPOIsRepository>: View {
                 }
             } else {
                 VisitedPOIListView(
-                    visitedPOIsRepository: visitedPOIsRepository,
+                    visitedPOIRepository: visitedPOIRepository,
                     mapsAppOpener: mapsAppOpener
                 )
             }

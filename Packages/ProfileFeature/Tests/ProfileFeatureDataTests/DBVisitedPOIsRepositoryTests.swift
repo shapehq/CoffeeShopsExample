@@ -2,7 +2,7 @@ import DB
 import ProfileFeatureData
 import XCTest
 
-final class DBVisitedPOIsRepositoryTests: XCTestCase {
+final class DBVisitedPOIRepositoryTests: XCTestCase {
     func testItStoresVisitedCoffeeShop() async throws {
         let mockDBPPOI = MockDBPOI(
             id: DBPOIID(latitude: 56, longitude: 10),
@@ -11,7 +11,7 @@ final class DBVisitedPOIsRepositoryTests: XCTestCase {
             longitude: 10
         )
         let dbPOIRepository = MockDBPOIRepository(content: [mockDBPPOI])
-        let repository = DBVisitedPOIsRepository(dbPOIRepository: dbPOIRepository)
+        let repository = DBVisitedPOIRepository(dbPOIRepository: dbPOIRepository)
         let expectation = XCTestExpectation(description: "timeout")
         let task = Task {
             _ = repository.visitedPOIs
@@ -40,7 +40,7 @@ final class DBVisitedPOIsRepositoryTests: XCTestCase {
             longitude: 10
         )
         let dbPOIRepository = MockDBPOIRepository(content: [mockDBPPOI])
-        let repository = DBVisitedPOIsRepository(dbPOIRepository: dbPOIRepository)
+        let repository = DBVisitedPOIRepository(dbPOIRepository: dbPOIRepository)
         let expectation = XCTestExpectation(description: "timeout")
         let task = Task {
             _ = repository.visitedPOIs

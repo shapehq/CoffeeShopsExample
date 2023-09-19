@@ -73,8 +73,8 @@ final class SwiftDataPOIRepositoryTests: XCTestCase {
         let expectation = XCTestExpectation(description: "timeout")
         let task = Task {
             let poiStream = try repository.pointsOfInterest(withIDs: [insertedPOI1.id, insertedPOI2.id])
-            for try await pois in poiStream {
-                XCTAssertEqual(pois.count, 2)
+            for try await pointsOfInterest in poiStream {
+                XCTAssertEqual(pointsOfInterest.count, 2)
                 expectation.fulfill()
             }
         }

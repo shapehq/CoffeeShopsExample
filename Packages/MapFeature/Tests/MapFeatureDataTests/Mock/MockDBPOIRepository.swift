@@ -17,8 +17,8 @@ final class MockDBPOIRepository: DBPOIRepository {
 
     func pointsOfInterest(withIDs ids: Set<DBPOIID>) throws -> AnyAsyncSequence<[DBPOIID: MockDBPOI]> {
         AnyAsyncSequence(
-            pointsOfInterest.map { pois in
-                pois.filter { poi in
+            pointsOfInterest.map { pointsOfInterest in
+                pointsOfInterest.filter { poi in
                     ids.contains(poi.id)
                 }
             }.map { pois in
