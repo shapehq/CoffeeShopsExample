@@ -9,7 +9,7 @@ struct PreviewDetailsService: DetailsService {
         self.note = note
     }
 
-    func pointOfInterestDetails(for sparseDetails: SparseDetails) async throws -> some Details {
+    func coffeeShopDetails(for sparseDetails: SparseDetails) async throws -> some Details {
         PreviewDetails(
             title: sparseDetails.title,
             latitude: sparseDetails.latitude,

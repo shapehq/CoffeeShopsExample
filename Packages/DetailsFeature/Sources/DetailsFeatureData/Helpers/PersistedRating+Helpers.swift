@@ -1,8 +1,8 @@
 import DB
 import DetailsFeatureDomain
 
-extension DetailsRating {
-    init(_ rating: PersistedRating) {
+extension PersistedRating {
+    init(_ rating: DetailsRating) {
         switch rating {
         case .unavailable:
             self = .unavailable

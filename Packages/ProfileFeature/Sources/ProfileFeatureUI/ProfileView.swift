@@ -3,15 +3,15 @@ import MapsAppOpenerDomain
 import ProfileFeatureDomain
 import SwiftUI
 
-public struct ProfileView<VisitedPOIRepositoryType: VisitedPOIRepository>: View {
+public struct ProfileView<VisitedCoffeeShopRepositoryType: VisitedCoffeeShopRepository>: View {
     private let authenticator: Authenticating
-    private let visitedPOIRepository: VisitedPOIRepositoryType
+    private let visitedCoffeeShopRepository: VisitedCoffeeShopRepositoryType
     private let mapsAppOpener: MapsAppOpening
     @State private var isConfirmLogOutPresented = false
-    private var visitedPOIsDetail: String? {
-        let visitedPOIs = visitedPOIRepository.visitedPOIs
-        if !visitedPOIs.isEmpty {
-            return "\(visitedPOIs.count)"
+    private var visitedCoffeeShopsDetail: String? {
+        let visitedCoffeeShops = visitedCoffeeShopRepository.visitedCoffeeShops
+        if !visitedCoffeeShops.isEmpty {
+            return "\(visitedCoffeeShops.count)"
         } else {
             return nil
         }
@@ -19,11 +19,11 @@ public struct ProfileView<VisitedPOIRepositoryType: VisitedPOIRepository>: View 
 
     public init(
         authenticator: Authenticating,
-        visitedPOIRepository: VisitedPOIRepositoryType,
+        visitedCoffeeShopRepository: VisitedCoffeeShopRepositoryType,
         mapsAppOpener: MapsAppOpening
     ) {
         self.authenticator = authenticator
-        self.visitedPOIRepository = visitedPOIRepository
+        self.visitedCoffeeShopRepository = visitedCoffeeShopRepository
         self.mapsAppOpener = mapsAppOpener
     }
 
@@ -38,14 +38,14 @@ public struct ProfileView<VisitedPOIRepositoryType: VisitedPOIRepository>: View 
                 }
                 Section {
                     NavigationLink {
-                        VisitedPOIsView(
-                            visitedPOIRepository: visitedPOIRepository,
+                        VisitedCoffeeShopsView(
+                            visitedCoffeeShopRepository: visitedCoffeeShopRepository,
                             mapsAppOpener: mapsAppOpener
                         )
                     } label: {
                         TitleDetailRow(
                             title: "Visited Coffee Shops",
-                            detail: visitedPOIsDetail
+                            detail: visitedCoffeeShopsDetail
                         )
                     }
                 }
@@ -83,7 +83,7 @@ public struct ProfileView<VisitedPOIRepositoryType: VisitedPOIRepository>: View 
 #Preview {
     ProfileView(
         authenticator: PreviewAuthenticator(),
-        visitedPOIRepository: PreviewVisitedPOIRepository(),
+        visitedCoffeeShopRepository: PreviewVisitedCoffeeShopRepository(),
         mapsAppOpener: PreviewMapsAppOpener()
     )
 }

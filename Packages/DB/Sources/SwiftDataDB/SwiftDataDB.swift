@@ -7,7 +7,7 @@ public final class SwiftDataDB {
     public init(isStoredInMemoryOnly: Bool) {
         // swiftlint:disable:next force_try
         modelContainer = try! ModelContainer(
-            for: SwiftDataPOI.self,
+            for: SwiftDataCoffeeShop.self,
             configurations: ModelConfiguration(
                 isStoredInMemoryOnly: isStoredInMemoryOnly
             )

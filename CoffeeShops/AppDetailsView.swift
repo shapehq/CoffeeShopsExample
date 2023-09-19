@@ -6,18 +6,18 @@ import MapsAppOpenerDomain
 import SwiftUI
 
 struct AppDetailsView<DetailsServiceType: DetailsService>: View {
-    let poi: MapPOI
+    let marker: CoffeeShopMarker
     let detailsService: DetailsServiceType
     let mapsAppOpener: MapsAppOpening
 
     var body: some View {
         DetailsView(
             SparseDetails(
-                title: poi.title,
-                latitude: poi.latitude,
-                longitude: poi.longitude,
-                phoneNumber: poi.phoneNumber,
-                websiteURL: poi.websiteURL
+                title: marker.title,
+                latitude: marker.latitude,
+                longitude: marker.longitude,
+                phoneNumber: marker.phoneNumber,
+                websiteURL: marker.websiteURL
             ),
             detailsService: detailsService,
             mapsAppOpener: mapsAppOpener

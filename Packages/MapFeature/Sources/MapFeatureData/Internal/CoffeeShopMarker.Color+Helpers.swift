@@ -1,20 +1,20 @@
+import DB
 import MapFeatureDomain
-import SwiftUI
 
-extension Color {
-    init(_ rating: CoffeeShopMarker.Color) {
+extension CoffeeShopMarker.Color {
+    init(_ rating: PersistedRating) {
         switch rating {
-        case .black:
+        case .unavailable:
             self = .black
-        case .red:
+        case .one:
             self = .red
-        case .orange:
+        case .two:
             self = .orange
-        case .yellow:
+        case .three:
             self = .yellow
-        case .green:
+        case .four:
             self = .green
-        case .blue:
+        case .five:
             self = .blue
         }
     }

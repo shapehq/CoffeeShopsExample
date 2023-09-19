@@ -4,30 +4,30 @@ import SwiftUI
 import UIKit
 
 public struct MapView<DetailView: View>: View {
-    private let mapPOIService: MapPOIService
-    private let makeDetailView: (MapPOI) -> DetailView
-    @State private var pointsOfInterest: [MapPOI] = []
-    @State private var selection: MapPOI?
+    private let mapCoffeeShopService: CoffeeShopMarkerService
+    private let makeDetailView: (CoffeeShopMarker) -> DetailView
+    @State private var coffeeShops: [CoffeeShopMarker] = []
+    @State private var selection: CoffeeShopMarker?
     @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
-    @State private var poiTask: Task<(), Error>?
+    @State private var coffeeShopsTask: Task<(), Error>?
 
     public init(
-        mapPOIService: MapPOIService,
-        @ViewBuilder detailView makeDetailView: @escaping (MapPOI) -> DetailView
+        mapCoffeeShopService: CoffeeShopMarkerService,
+        @ViewBuilder detailView makeDetailView: @escaping (CoffeeShopMarker) -> DetailView
     ) {
-        self.mapPOIService = mapPOIService
+        self.mapCoffeeShopService = mapCoffeeShopService
         self.makeDetailView = makeDetailView
     }
 
     public var body: some View {
         Map(position: $position, selection: $selection) {
-            ForEach(pointsOfInterest, id: \.self) { poi in
+            ForEach(coffeeShops, id: \.self) { coffeeShop in
                 Marker(
-                    poi.title,
+                    coffeeShop.title,
                     systemImage: "mug",
-                    coordinate: poi.coordinate
+                    coordinate: coffeeShop.coordinate
                 )
-                .tint(Color(poi.color))
+                .tint(Color(coffeeShop.color))
             }
             UserAnnotation()
         }
@@ -36,8 +36,8 @@ public struct MapView<DetailView: View>: View {
             MapCompass()
             MapScaleView()
         }
-        .sheet(item: $selection.animation()) { selectedPOI in
-            makeDetailView(selectedPOI)
+        .sheet(item: $selection.animation()) { selectedCoffeeShop in
+            makeDetailView(selectedCoffeeShop)
                 .presentationDetents([.medium, .large])
                 .presentationBackground(.regularMaterial)
                 .presentationCornerRadius(18)
@@ -49,7 +49,7 @@ public struct MapView<DetailView: View>: View {
         }
         .onMapCameraChange { context in
             position = .region(context.region)
-            showPointsOfInterest(in: context.region)
+            showCoffeeShops(in: context.region)
         }
         .onAppear {
             requestLocationAuthorizationIfNeeded()
@@ -58,10 +58,10 @@ public struct MapView<DetailView: View>: View {
 }
 
 private extension MapView {
-    private func showPointsOfInterest(in region: MKCoordinateRegion) {
-        poiTask?.cancel()
-        poiTask = Task {
-            let newPOIsStream = try await mapPOIService.pointsOfInterest(
+    private func showCoffeeShops(in region: MKCoordinateRegion) {
+        coffeeShopsTask?.cancel()
+        coffeeShopsTask = Task {
+            let newCoffeeShopsStream = try await mapCoffeeShopService.coffeeShops(
                 centerLatitude: region.center.latitude,
                 centerLongitude: region.center.longitude,
                 latitudeDelta: region.span.latitudeDelta,
@@ -70,18 +70,18 @@ private extension MapView {
             guard !Task.isCancelled else {
                 return
             }
-            for try await newPOIs in newPOIsStream {
+            for try await newCoffeeShops in newCoffeeShopsStream {
                 withAnimation {
-                    self.pointsOfInterest = newPOIs
+                    self.coffeeShops = newCoffeeShops
                 }
-                reselectPOIIfNeeded(selectingFrom: newPOIs)
+                reselectCoffeeShopIfNeeded(selectingFrom: newCoffeeShops)
             }
         }
     }
 
-    private func reselectPOIIfNeeded(selectingFrom newPOIs: [MapPOI]) {
-        if let oldSelectedPOI = selection {
-            selection = newPOIs.first { $0.id == oldSelectedPOI.id }
+    private func reselectCoffeeShopIfNeeded(selectingFrom newCoffeeShops: [CoffeeShopMarker]) {
+        if let oldSelectedCoffeeShop = selection {
+            selection = newCoffeeShops.first { $0.id == oldSelectedCoffeeShop.id }
         }
     }
 
@@ -99,7 +99,7 @@ private extension MapView {
 }
 
 #Preview {
-    MapView(mapPOIService: PreviewMapPOIService()) { _ in
-        Text("POI Details")
+    MapView(mapCoffeeShopService: PreviewCoffeeShopMarkerService()) { _ in
+        Text("CoffeeShop Details")
     }
 }

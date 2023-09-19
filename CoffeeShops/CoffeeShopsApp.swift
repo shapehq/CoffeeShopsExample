@@ -37,21 +37,21 @@ struct CoffeeShopsApp: App {
 
 private extension CoffeeShopsApp {
     private var mapView: some View {
-        let visitedPOIRepository = self.visitedPOIRepository
+        let visitedCoffeeShopRepository = self.visitedCoffeeShopRepository
         return MapView(
-            mapPOIService: DebouncingMapPOIService(
-                decorating: CachingMapPOIService(
-                    decorating: DBMapPOIService(
-                        decorating: MapKitMapPOIService(),
-                        dbPOIRepository: visitedPOIRepository
+            mapCoffeeShopService: DebouncingCoffeeShopMarkerService(
+                decorating: CachingCoffeeShopMarkerService(
+                    decorating: PersistenceAnnotatingCoffeeShopMarkerService(
+                        decorating: MapKitCoffeeShopMarkerService(),
+                        persistedCoffeeShopRepository: visitedCoffeeShopRepository
                     )
                 )
             )
-        ) { poi in
+        ) { marker in
             AppDetailsView(
-                poi: poi,
-                detailsService: DBDetailsService(
-                    dbPOIRepository: visitedPOIRepository
+                marker: marker,
+                detailsService: PersistedDetailsService(
+                    persistedCoffeeShopRepository: visitedCoffeeShopRepository
                 ),
                 mapsAppOpener: mapsAppOpener
             )
@@ -61,8 +61,8 @@ private extension CoffeeShopsApp {
     private var profileView: some View {
         ProfileView(
             authenticator: authenticator,
-            visitedPOIRepository: DBVisitedPOIRepository(
-                dbPOIRepository: visitedPOIRepository
+            visitedCoffeeShopRepository: PersistedVisitedCoffeeShopRepository(
+                persistedCoffeeShopRepository: visitedCoffeeShopRepository
             ),
             mapsAppOpener: mapsAppOpener
         )
@@ -78,8 +78,8 @@ private extension CoffeeShopsApp {
         Authenticator(credentialsStore: credentialsStore)
     }
 
-    private var visitedPOIRepository: some DBPOIRepository {
-        SwiftDataPOIRepository(
+    private var visitedCoffeeShopRepository: some PersistedCoffeeShopRepository {
+        SwiftDataCoffeeShopRepository(
             modelContext: ModelContext(db.modelContainer)
         )
     }

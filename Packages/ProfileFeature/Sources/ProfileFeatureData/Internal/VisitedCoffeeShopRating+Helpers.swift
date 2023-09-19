@@ -1,7 +1,7 @@
 import DB
-import DetailsFeatureDomain
+import ProfileFeatureDomain
 
-extension DetailsRating {
+extension VisitedCoffeeShopRating {
     init(_ rating: PersistedRating) {
         switch rating {
         case .unavailable:

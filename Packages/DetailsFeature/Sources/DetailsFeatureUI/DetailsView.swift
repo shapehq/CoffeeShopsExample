@@ -63,7 +63,7 @@ private extension DetailsView {
 
     private func loadDetails() async {
         do {
-            details = try await detailsService.pointOfInterestDetails(for: sparseDetails)
+            details = try await detailsService.coffeeShopDetails(for: sparseDetails)
         } catch {}
     }
 }
