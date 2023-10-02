@@ -37,7 +37,7 @@ private extension CoffeeShopsApp {
     private var mapView: some View {
         let visitedCoffeeShopRepository = self.visitedCoffeeShopRepository
         return MapView(
-            mapCoffeeShopService: DebouncingCoffeeShopMarkerService(
+            markerService: DebouncingCoffeeShopMarkerService(
                 decorating: CachingCoffeeShopMarkerService(
                     decorating: PersistenceAnnotatingCoffeeShopMarkerService(
                         decorating: MapKitCoffeeShopMarkerService(),

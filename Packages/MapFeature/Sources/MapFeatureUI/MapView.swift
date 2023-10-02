@@ -4,7 +4,7 @@ import SwiftUI
 import UIKit
 
 public struct MapView<DetailView: View>: View {
-    private let mapCoffeeShopService: CoffeeShopMarkerService
+    private let markerService: CoffeeShopMarkerService
     private let makeDetailView: (CoffeeShopMarker) -> DetailView
     @State private var coffeeShops: [CoffeeShopMarker] = []
     @State private var selection: CoffeeShopMarker?
@@ -12,10 +12,10 @@ public struct MapView<DetailView: View>: View {
     @State private var coffeeShopsTask: Task<(), Error>?
 
     public init(
-        mapCoffeeShopService: CoffeeShopMarkerService,
+        markerService: CoffeeShopMarkerService,
         @ViewBuilder detailView makeDetailView: @escaping (CoffeeShopMarker) -> DetailView
     ) {
-        self.mapCoffeeShopService = mapCoffeeShopService
+        self.markerService = markerService
         self.makeDetailView = makeDetailView
     }
 
@@ -61,7 +61,7 @@ private extension MapView {
     private func showCoffeeShops(in region: MKCoordinateRegion) {
         coffeeShopsTask?.cancel()
         coffeeShopsTask = Task {
-            let newCoffeeShopsStream = try await mapCoffeeShopService.coffeeShops(
+            let newCoffeeShopsStream = try await markerService.coffeeShops(
                 centerLatitude: region.center.latitude,
                 centerLongitude: region.center.longitude,
                 latitudeDelta: region.span.latitudeDelta,
@@ -99,7 +99,7 @@ private extension MapView {
 }
 
 #Preview {
-    MapView(mapCoffeeShopService: PreviewCoffeeShopMarkerService()) { _ in
+    MapView(markerService: PreviewCoffeeShopMarkerService()) { _ in
         Text("CoffeeShop Details")
     }
 }
