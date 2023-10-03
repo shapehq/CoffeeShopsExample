@@ -5,7 +5,7 @@ import SwiftUI
 struct MapDevApp: App {
     var body: some Scene {
         WindowGroup {
-            MapView(mapCoffeeShopService: MockCoffeeShopMarkerService()) { _ in
+            MapView(markerService: MockCoffeeShopMarkerService()) { _ in
                 ZStack(alignment: .topLeading) {
                     Color.clear
                         .background(.regularMaterial)

@@ -5,7 +5,7 @@ import XCTest
 
 final class PersistenceAnnotatingCoffeeShopMarkerServiceTests: XCTestCase {
     func testItUpdatesColorFromStoredRating() async throws {
-        let mapCoffeeShopService = MockCoffeeShopMarkerService(coffeeShops: [
+        let markerService = MockCoffeeShopMarkerService(coffeeShops: [
             CoffeeShopMarker(title: "Foo", latitude: 56, longitude: 10, color: .black)
         ])
         let persistedCoffeeShopRepository = MockPersistedCoffeeShopRepository(content: [
@@ -18,7 +18,7 @@ final class PersistenceAnnotatingCoffeeShopMarkerServiceTests: XCTestCase {
             )
         ])
         let service = PersistenceAnnotatingCoffeeShopMarkerService(
-            decorating: mapCoffeeShopService,
+            decorating: markerService,
             persistedCoffeeShopRepository: persistedCoffeeShopRepository
         )
         let stream = try await service.coffeeShops(

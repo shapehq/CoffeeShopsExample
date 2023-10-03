@@ -5,8 +5,8 @@ import XCTest
 
 final class DebouncingCoffeeShopMarkerServiceTests: XCTestCase {
     func testItDebouncesRequestsWhenPreviousTaskIsCancelled() async throws {
-        let mapCoffeeShopService = MockCoffeeShopMarkerService(coffeeShops: [])
-        let service = DebouncingCoffeeShopMarkerService(decorating: mapCoffeeShopService)
+        let markerService = MockCoffeeShopMarkerService(coffeeShops: [])
+        let service = DebouncingCoffeeShopMarkerService(decorating: markerService)
         let expectation = XCTestExpectation(description: "timeout")
         let t1 = Task {
             _ = try await service.coffeeShops(
@@ -27,13 +27,13 @@ final class DebouncingCoffeeShopMarkerServiceTests: XCTestCase {
             expectation.fulfill()
         }
         await fulfillment(of: [expectation], timeout: 5)
-        XCTAssertEqual(mapCoffeeShopService.numberOfInvocations, 1)
+        XCTAssertEqual(markerService.numberOfInvocations, 1)
         t2.cancel()
     }
 
     func testItPerformsAllRequestsWhenTasksAreNotCancelled() async throws {
-        let mapCoffeeShopService = MockCoffeeShopMarkerService(coffeeShops: [])
-        let service = DebouncingCoffeeShopMarkerService(decorating: mapCoffeeShopService)
+        let markerService = MockCoffeeShopMarkerService(coffeeShops: [])
+        let service = DebouncingCoffeeShopMarkerService(decorating: markerService)
         let expectation = XCTestExpectation(description: "timeout")
         let t1 = Task {
             _ = try await service.coffeeShops(
@@ -53,7 +53,7 @@ final class DebouncingCoffeeShopMarkerServiceTests: XCTestCase {
             expectation.fulfill()
         }
         await fulfillment(of: [expectation], timeout: 5)
-        XCTAssertEqual(mapCoffeeShopService.numberOfInvocations, 2)
+        XCTAssertEqual(markerService.numberOfInvocations, 2)
         t1.cancel()
         t2.cancel()
     }
