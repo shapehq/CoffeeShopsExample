@@ -35,13 +35,13 @@ struct CoffeeShopsApp: App {
 
 private extension CoffeeShopsApp {
     private var mapView: some View {
-        let visitedCoffeeShopRepository = self.visitedCoffeeShopRepository
+        let persistedCoffeeShopRepository = self.persistedCoffeeShopRepository
         return MapView(
             markerService: DebouncingCoffeeShopMarkerService(
                 decorating: CachingCoffeeShopMarkerService(
                     decorating: PersistenceAnnotatingCoffeeShopMarkerService(
                         decorating: MapKitCoffeeShopMarkerService(),
-                        persistedCoffeeShopRepository: visitedCoffeeShopRepository
+                        persistedCoffeeShopRepository: persistedCoffeeShopRepository
                     )
                 )
             )
@@ -49,7 +49,7 @@ private extension CoffeeShopsApp {
             AppDetailsView(
                 marker: marker,
                 detailsService: PersistedDetailsService(
-                    persistedCoffeeShopRepository: visitedCoffeeShopRepository
+                    persistedCoffeeShopRepository: persistedCoffeeShopRepository
                 )
             )
         }
@@ -59,7 +59,7 @@ private extension CoffeeShopsApp {
         ProfileView(
             authenticator: authenticator,
             visitedCoffeeShopRepository: PersistedVisitedCoffeeShopRepository(
-                persistedCoffeeShopRepository: visitedCoffeeShopRepository
+                persistedCoffeeShopRepository: persistedCoffeeShopRepository
             )
         )
     }
@@ -70,7 +70,7 @@ private extension CoffeeShopsApp {
         Authenticator(credentialsStore: credentialsStore)
     }
 
-    private var visitedCoffeeShopRepository: some PersistedCoffeeShopRepository {
+    private var persistedCoffeeShopRepository: some PersistedCoffeeShopRepository {
         SwiftDataCoffeeShopRepository(
             modelContext: ModelContext(db.modelContainer)
         )
